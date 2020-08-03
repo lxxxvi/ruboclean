@@ -4,6 +4,7 @@ require 'pathname'
 require 'yaml'
 
 module Ruboclean
+  # Interface for reading and writing the `.rubocop.yml` file
   class RubocopConfigurationPath
     def initialize(path)
       input_path = Pathname.new(path)

@@ -3,6 +3,7 @@
 require 'ruboclean/grouper'
 
 module Ruboclean
+  # Orders the items within the groups alphabetically
   class Orderer
     def initialize(rubocop_configuration)
       @rubocop_configuration = rubocop_configuration

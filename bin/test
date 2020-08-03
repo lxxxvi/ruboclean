@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require 'fileutils'
+
+# Runs all tests and linters
+class BinTest
+  include FileUtils
+
+  APP_ROOT = File.expand_path('..', __dir__)
+
+  def system!(*args)
+    system(*args) || abort("\n== Command #{args} failed ==")
+  end
+
+  def run
+    chdir APP_ROOT do
+      puts "\n== Run tests =="
+      system! 'bundle exec rake test'
+
+      puts "\n== Run rubocop =="
+      system! 'bundle exec rubocop -p'
+    end
+  end
+end
+
+BinTest.new.run

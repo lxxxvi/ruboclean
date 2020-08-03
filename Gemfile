@@ -8,4 +8,5 @@ group :development do
   gem 'minitest'
   gem 'rake'
   gem 'rubocop'
+  gem 'simplecov', '< 0.18'
 end

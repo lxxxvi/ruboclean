@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Ruboclean
+  # Contains the hash representation of the `.rubocop.yml` file
   class RubocopConfiguration
     def initialize(rubocop_config)
       @rubocop_config = rubocop_config

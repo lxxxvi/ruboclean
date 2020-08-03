@@ -33,15 +33,8 @@ Style/BisectedAttrAccessor:
 Style/CaseLikeIf:
   Enabled: true
 
-Style/Documentation:
-  Enabled: false
-
 Style/ExponentialNotation:
   Enabled: true
-
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'bin/**/*'
 
 Style/HashAsLastArrayItem:
   Enabled: true
