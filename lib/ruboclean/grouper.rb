@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module Ruboclean
+  # Groups the rubocop configuration items into two categories:
+  #   - namespaces: every item which does **not** include an "/"
+  #   - cops: every item which **includes** an "/"
   class Grouper
     def initialize(rubocop_configuration)
       @rubocop_configuration = rubocop_configuration
