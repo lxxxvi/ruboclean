@@ -1,0 +1,12 @@
+Rails/ShortI18n:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+
+Rails:
+  Enabled: true
+
+AllCops:
+  Exclude:
+  - bin/**/*

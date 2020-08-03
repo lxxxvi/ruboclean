@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'ruboclean'
+puts Ruboclean.run(ARGV[0])
