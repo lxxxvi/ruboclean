@@ -3,4 +3,9 @@
 # frozen_string_literal: true
 
 require 'ruboclean'
-puts Ruboclean.run(ARGV[0])
+
+path = ARGV[0] || Dir.pwd
+
+print "using path '#{path}'..."
+Ruboclean.run(path)
+puts " done."

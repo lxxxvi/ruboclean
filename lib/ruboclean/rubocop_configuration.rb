@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 module Ruboclean
-  # Contains the hash representation of the `.rubocop.yml` file
+  # Contains the config_hash representation of the `.rubocop.yml` file
   class RubocopConfiguration
-    attr_reader :hash
-
-    def initialize(hash)
-      @hash = hash
+    def initialize(config_hash)
+      @config_hash = config_hash
     end
 
     def order
-      Ruboclean::Orderer.new(@hash).order
+      Ruboclean::Orderer.new(@config_hash).order
     end
   end
 end

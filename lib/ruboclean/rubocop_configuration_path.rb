@@ -30,13 +30,15 @@ module Ruboclean
     end
 
     def write(rubocop_configuration)
-      output = rubocop_configuration.to_yaml
-                                    .gsub(/^([a-zA-Z]+)/, "\n\\1")
-
+      output = sanitize_yaml(rubocop_configuration.to_yaml)
       @rubocop_configuration_path.write(output)
     end
 
     private
+
+    def sanitize_yaml(data)
+      data.gsub(/^([a-zA-Z]+)/, "\n\\1")
+    end
 
     def load_yaml
       YAML.safe_load(@rubocop_configuration_path.read)
