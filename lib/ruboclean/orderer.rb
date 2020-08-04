@@ -5,30 +5,18 @@ require 'ruboclean/grouper'
 module Ruboclean
   # Orders the items within the groups alphabetically
   class Orderer
-    def initialize(rubocop_configuration)
-      @rubocop_configuration = rubocop_configuration
+    def initialize(hash)
+      @hash = hash
     end
 
     def order
-      ordered_hash = {}.merge(@rubocop_configuration.only_require_config)
-                       .merge(remaining_config_ordered_within_groups)
-
-      Ruboclean::RubocopConfiguration.new(ordered_hash)
+      order_within_groups
     end
 
     private
 
-    def remaining_config_ordered_within_groups
-      # ordered_within_groups = {}
-
-      # group_remaining_config.map do |group|
-      #   _group_name, group_items = group
-      #   ordered_within_groups.merge!(order_by_key(group_items))
-      # end
-
-      # ordered_within_groups
-
-      grouped_remaining_config.reduce({}) do |result, group|
+    def order_within_groups
+      grouped_config.reduce({}) do |result, group|
         _group_name, group_items = group
         result.merge!(order_by_key(group_items))
       end
@@ -38,8 +26,8 @@ module Ruboclean
       hash.sort_by(&:first).to_h
     end
 
-    def grouped_remaining_config
-      Ruboclean::Grouper.new(@rubocop_configuration).group_remaining_config
+    def grouped_config
+      Ruboclean::Grouper.new(@hash).group_config
     end
   end
 end

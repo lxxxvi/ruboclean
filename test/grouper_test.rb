@@ -3,29 +3,44 @@
 require 'test_helper'
 
 class GrouperTest < BaseTest
-  def test_group_remaining_config_with_empty_configuration
-    group_remaining_config_with({}).tap do |result|
-      assert_equal 2, result.keys.size
+  def test_group_config_with_empty_configuration
+    config_hash = {}
+
+    group_config_with(config_hash).tap do |result|
+      assert_equal 3, result.keys.size
+      assert_equal 0, result[:require].size
       assert_equal 0, result[:namespaces].size
       assert_equal 0, result[:cops].size
     end
   end
 
-  def test_group_remaining_config_only_namespaces
-    input = { 'AllCops' => { 'Enabled' => true } }
+  def test_group_config_only_require
+    config_hash = { 'require' => ['rubocop-rails'] }
 
-    group_remaining_config_with(input).tap do |result|
-      assert_equal 2, result.keys.size
+    group_config_with(config_hash).tap do |result|
+      assert_equal 3, result.keys.size
+      assert_equal 1, result[:require].size
+      assert_equal 0, result[:namespaces].size
+      assert_equal 0, result[:cops].size
+    end
+  end
+
+  def test_group_config_only_namespaces
+    config_hash = { 'AllCops' => { 'Enabled' => true } }
+
+    group_config_with(config_hash).tap do |result|
+      assert_equal 3, result.keys.size
+      assert_equal 0, result[:require].size
       assert_equal 1, result[:namespaces].size
       assert_equal 0, result[:cops].size
     end
   end
 
-  def test_group_remaining_config_only_cops
-    input = { 'Style/CaseLikeIf' => { 'Enabled' => true } }
+  def test_group_config_only_cops
+    config_hash = { 'Style/CaseLikeIf' => { 'Enabled' => true } }
 
-    group_remaining_config_with(input).tap do |result|
-      assert_equal 2, result.keys.size
+    group_config_with(config_hash).tap do |result|
+      assert_equal 3, result.keys.size
       assert_equal 0, result[:namespaces].size
       assert_equal 1, result[:cops].size
     end
@@ -33,8 +48,7 @@ class GrouperTest < BaseTest
 
   private
 
-  def group_remaining_config_with(hash)
-    rubocop_configuration = Ruboclean::RubocopConfiguration.new(hash)
-    Ruboclean::Grouper.new(rubocop_configuration).group_remaining_config
+  def group_config_with(config_hash)
+    Ruboclean::Grouper.new(config_hash).group_config
   end
 end

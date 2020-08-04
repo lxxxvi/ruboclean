@@ -34,12 +34,10 @@ class OrdererTest < BaseTest
   private
 
   def assert_ordered(input, expected_output)
-    rubocop_config = Ruboclean::RubocopConfiguration.new(input)
-    orderer = Ruboclean::Orderer.new(rubocop_config)
+    orderer = Ruboclean::Orderer.new(input)
 
-    orderer.order.tap do |ordered_rubocop_config|
-      assert_equal Ruboclean::RubocopConfiguration, ordered_rubocop_config.class
-      assert_equal expected_output.to_a, ordered_rubocop_config.rubocop_config.to_a
+    orderer.order.tap do |result|
+      assert_equal expected_output.to_a, result.to_a
     end
   end
 end
