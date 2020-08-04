@@ -1,26 +1,14 @@
 # frozen_string_literal: true
 
 module Ruboclean
-  # Contains the hash representation of the `.rubocop.yml` file
+  # Contains the config_hash representation of the `.rubocop.yml` file
   class RubocopConfiguration
-    def initialize(rubocop_config)
-      @rubocop_config = rubocop_config
-    end
-
-    def only_require_config
-      @rubocop_config.slice('require')
-    end
-
-    def except_require_config
-      @rubocop_config.keep_if { |config| config != 'require' }
-    end
-
-    def to_yaml
-      @rubocop_config.to_yaml
+    def initialize(config_hash)
+      @config_hash = config_hash
     end
 
     def order
-      Ruboclean::Orderer.new(self).order
+      Ruboclean::Orderer.new(@config_hash).order
     end
   end
 end

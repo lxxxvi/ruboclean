@@ -1,26 +1,34 @@
 # frozen_string_literal: true
 
 module Ruboclean
-  # Groups the rubocop configuration items into two categories:
+  # Groups the rubocop configuration items into three categories:
+  #   - require: the require block
   #   - namespaces: every item which does **not** include an "/"
   #   - cops: every item which **includes** an "/"
   class Grouper
-    def initialize(rubocop_configuration)
-      @rubocop_configuration = rubocop_configuration
+    def initialize(config_hash)
+      @config_hash = config_hash
     end
 
-    def group_remaining_config
-      groups = { namespaces: [], cops: [] }
-
-      @rubocop_configuration.except_require_config.each do |key, value|
-        if key.include?('/')
-          groups[:cops] << Hash[key, value]
-        else
-          groups[:namespaces] << Hash[key, value]
-        end
+    def group_config
+      @config_hash.each_with_object(empty_groups) do |item, result|
+        key, value = item
+        target_group = find_target_group(key)
+        result[target_group].merge! Hash[key, value]
       end
+    end
 
-      groups
+    private
+
+    def empty_groups
+      { require: {}, namespaces: {}, cops: {} }
+    end
+
+    def find_target_group(key)
+      return :require if key == 'require'
+      return :cops if key.include?('/')
+
+      :namespaces
     end
   end
 end
