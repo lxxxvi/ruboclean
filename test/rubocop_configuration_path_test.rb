@@ -11,9 +11,17 @@ class RubocopConfigurationPathTest < BaseTest
     assert_equal "path does not exist: 'does-not-exist'", error.message
   end
 
-  def test_load
+  def test_load_with_file_path
     using_fixture_file('00_input.yml') do |rubocop_configuration_pathname|
       Ruboclean::RubocopConfigurationPath.new(rubocop_configuration_pathname).load.tap do |result|
+        assert_equal Ruboclean::RubocopConfiguration, result.class
+      end
+    end
+  end
+
+  def test_load_with_directory_path
+    using_fixture_file('00_input.yml') do |rubocop_configuration_pathname|
+      Ruboclean::RubocopConfigurationPath.new(rubocop_configuration_pathname.dirname).load.tap do |result|
         assert_equal Ruboclean::RubocopConfiguration, result.class
       end
     end
