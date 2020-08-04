@@ -3,6 +3,8 @@
 module Ruboclean
   # Contains the hash representation of the `.rubocop.yml` file
   class RubocopConfiguration
+    attr_reader :rubocop_config
+
     def initialize(rubocop_config)
       @rubocop_config = rubocop_config
     end
@@ -12,7 +14,7 @@ module Ruboclean
     end
 
     def except_require_config
-      @rubocop_config.keep_if { |config| config != 'require' }
+      @rubocop_config.find_all { |key, _value| key != 'require' }
     end
 
     def to_yaml

@@ -6,6 +6,13 @@ require 'yaml'
 module Ruboclean
   # Interface for reading and writing the `.rubocop.yml` file
   class RubocopConfigurationPath
+    # Thrown if given path is invalid
+    class InvalidPathError < StandardError
+      def initialize(path)
+        super "path does not exist: '#{path}'"
+      end
+    end
+
     def initialize(path)
       input_path = Pathname.new(path)
 
@@ -15,7 +22,11 @@ module Ruboclean
                                       input_path
                                     end
 
-      raise 'path does not exist' unless @rubocop_configuration_path.exist?
+      raise InvalidPathError, @rubocop_configuration_path unless @rubocop_configuration_path.exist?
+    end
+
+    def load
+      Ruboclean::RubocopConfiguration.new(load_yaml)
     end
 
     def write(rubocop_configuration)
@@ -23,10 +34,6 @@ module Ruboclean
                                     .gsub(/^([a-zA-Z]+)/, "\n\\1")
 
       @rubocop_configuration_path.write(output)
-    end
-
-    def load
-      Ruboclean::RubocopConfiguration.new(load_yaml)
     end
 
     private

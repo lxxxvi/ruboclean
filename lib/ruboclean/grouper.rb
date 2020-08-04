@@ -10,13 +10,13 @@ module Ruboclean
     end
 
     def group_remaining_config
-      groups = { namespaces: [], cops: [] }
+      groups = { namespaces: {}, cops: {} }
 
       @rubocop_configuration.except_require_config.each do |key, value|
         if key.include?('/')
-          groups[:cops] << Hash[key, value]
+          groups[:cops].merge! Hash[key, value]
         else
-          groups[:namespaces] << Hash[key, value]
+          groups[:namespaces].merge! Hash[key, value]
         end
       end
 

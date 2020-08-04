@@ -19,19 +19,26 @@ module Ruboclean
     private
 
     def remaining_config_ordered_within_groups
-      ordered_within_groups = {}
+      # ordered_within_groups = {}
 
-      group_remaining_config.map do |group|
+      # group_remaining_config.map do |group|
+      #   _group_name, group_items = group
+      #   ordered_within_groups.merge!(order_by_key(group_items))
+      # end
+
+      # ordered_within_groups
+
+      grouped_remaining_config.reduce({}) do |result, group|
         _group_name, group_items = group
-
-        group_items.sort_by { |group_item| group_item.first.first }
-                   .each { |sorted_group_item| ordered_within_groups.merge!(sorted_group_item) }
+        result.merge!(order_by_key(group_items))
       end
-
-      ordered_within_groups
     end
 
-    def group_remaining_config
+    def order_by_key(hash)
+      hash.sort_by(&:first).to_h
+    end
+
+    def grouped_remaining_config
       Ruboclean::Grouper.new(@rubocop_configuration).group_remaining_config
     end
   end
