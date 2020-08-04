@@ -6,6 +6,6 @@ require 'ruboclean'
 
 path = ARGV[0] || Dir.pwd
 
-print "using path '#{path}'..."
+print "Using path '#{path}' ... "
 Ruboclean.run(path)
-puts " done."
+puts 'done.'
