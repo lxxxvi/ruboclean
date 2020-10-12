@@ -2,7 +2,7 @@
 
 module Ruboclean
   # Groups the rubocop configuration items into three categories:
-  #   - require: the require block
+  #   - base: base configuration like 'require', 'inherit_from', etc
   #   - namespaces: every item which does **not** include an "/"
   #   - cops: every item which **includes** an "/"
   class Grouper
@@ -21,11 +21,11 @@ module Ruboclean
     private
 
     def empty_groups
-      { require: {}, namespaces: {}, cops: {} }
+      { base: {}, namespaces: {}, cops: {} }
     end
 
     def find_target_group(key)
-      return :require if key.start_with?(/[a-z]/)
+      return :base if key.start_with?(/[a-z]/)
       return :cops if key.include?('/')
 
       :namespaces
