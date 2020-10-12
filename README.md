@@ -6,7 +6,7 @@
 
 **ruboclean** puts `.rubocop.yml` into order. It groups the configuration into three groups:
 
-1. `require`
+1. "Base"-configuration like `require`, `inherit_from`, etc.
 2. `Namespaces`
 3. `Namespace/Cops`
 
