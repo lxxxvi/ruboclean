@@ -25,7 +25,7 @@ module Ruboclean
     end
 
     def find_target_group(key)
-      return :require if key == 'require'
+      return :require if key.start_with?(/[a-z]/)
       return :cops if key.include?('/')
 
       :namespaces

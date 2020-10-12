@@ -4,8 +4,8 @@ require 'test_helper'
 
 class OrdererTest < BaseTest
   def test_order_all
-    input = { 'Foo/Foo' => nil, 'Foo/Faa' => nil, 'Baz' => nil, 'Bar' => nil, 'require' => nil }
-    output = { 'require' => nil, 'Bar' => nil, 'Baz' => nil, 'Foo/Faa' => nil, 'Foo/Foo' => nil }
+    input = { 'Foo/Foo' => nil, 'Foo/Faa' => nil, 'Baz' => nil, 'Bar' => nil, 'require' => nil, 'inherit_from' => nil }
+    output = { 'inherit_from' => nil, 'require' => nil, 'Bar' => nil, 'Baz' => nil, 'Foo/Faa' => nil, 'Foo/Foo' => nil }
 
     assert_ordered input, output
   end

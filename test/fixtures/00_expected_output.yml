@@ -1,5 +1,8 @@
 ---
 
+inherit_from:
+- shared.yml
+
 require:
 - rubocop-rails
 

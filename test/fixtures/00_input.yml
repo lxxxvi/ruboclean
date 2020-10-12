@@ -13,3 +13,6 @@ AllCops:
 
 require:
 - rubocop-rails
+
+inherit_from:
+- shared.yml
