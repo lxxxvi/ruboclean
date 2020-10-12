@@ -4,7 +4,7 @@ env:
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
 name: Continuous Integration
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   test:
