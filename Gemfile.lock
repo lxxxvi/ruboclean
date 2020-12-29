@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruboclean (0.1.0)
+    ruboclean (0.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -47,4 +47,4 @@ DEPENDENCIES
   simplecov (< 0.18)
 
 BUNDLED WITH
-   2.1.4
+   2.2.3
