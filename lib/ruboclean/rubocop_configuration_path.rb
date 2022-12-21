@@ -41,7 +41,7 @@ module Ruboclean
     end
 
     def load_yaml
-      YAML.safe_load(@rubocop_configuration_path.read)
+      YAML.safe_load(@rubocop_configuration_path.read, [Symbol, Regexp])
     end
   end
 end
