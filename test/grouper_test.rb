@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class GrouperTest < BaseTest
   def test_group_config_with_empty_configuration
@@ -15,7 +15,7 @@ class GrouperTest < BaseTest
   end
 
   def test_group_config_only_base
-    config_hash = { 'require' => ['rubocop-rails'] }
+    config_hash = { "require" => ["rubocop-rails"] }
 
     group_config_with(config_hash).tap do |result|
       assert_equal 3, result.keys.size
@@ -26,7 +26,7 @@ class GrouperTest < BaseTest
   end
 
   def test_group_config_only_namespaces
-    config_hash = { 'AllCops' => { 'Enabled' => true } }
+    config_hash = { "AllCops" => { "Enabled" => true } }
 
     group_config_with(config_hash).tap do |result|
       assert_equal 3, result.keys.size
@@ -37,7 +37,7 @@ class GrouperTest < BaseTest
   end
 
   def test_group_config_only_cops
-    config_hash = { 'Style/CaseLikeIf' => { 'Enabled' => true } }
+    config_hash = { "Style/CaseLikeIf" => { "Enabled" => true } }
 
     group_config_with(config_hash).tap do |result|
       assert_equal 3, result.keys.size

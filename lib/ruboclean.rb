@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'ruboclean/version'
-require 'ruboclean/rubocop_configuration'
-require 'ruboclean/rubocop_configuration_path'
-require 'ruboclean/orderer'
+require "ruboclean/version"
+require "ruboclean/rubocop_configuration"
+require "ruboclean/rubocop_configuration_path"
+require "ruboclean/orderer"
 
 # Ruboclean entry point
 module Ruboclean
