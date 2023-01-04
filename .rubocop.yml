@@ -1,12 +1,39 @@
 ---
 
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: true
+
+Gemspec/RequireMFA:
+  Enabled: true
+
 Layout/BeginEndAlignment:
   Enabled: true
 
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
 
+Layout/LineContinuationLeadingSpace:
+  Enabled: true
+
+Layout/LineContinuationSpacing:
+  Enabled: true
+
+Layout/LineEndStringConcatenationIndentation:
+  Enabled: true
+
 Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+
+Lint/AmbiguousAssignment:
+  Enabled: true
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: true
+
+Lint/AmbiguousRange:
   Enabled: true
 
 Lint/BinaryOperatorWithIdenticalOperands:
@@ -15,10 +42,25 @@ Lint/BinaryOperatorWithIdenticalOperands:
 Lint/ConstantDefinitionInBlock:
   Enabled: true
 
+Lint/ConstantOverwrittenInRescue:
+  Enabled: true
+
+Lint/DeprecatedConstants:
+  Enabled: true
+
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
 
+Lint/DuplicateBranch:
+  Enabled: true
+
 Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/DuplicateMagicComment:
+  Enabled: true
+
+Lint/DuplicateRegexpCharacterClassElement:
   Enabled: true
 
 Lint/DuplicateRequire:
@@ -27,10 +69,19 @@ Lint/DuplicateRequire:
 Lint/DuplicateRescueException:
   Enabled: true
 
+Lint/EmptyBlock:
+  Enabled: true
+
+Lint/EmptyClass:
+  Enabled: true
+
 Lint/EmptyConditionalBody:
   Enabled: true
 
 Lint/EmptyFile:
+  Enabled: true
+
+Lint/EmptyInPattern:
   Enabled: true
 
 Lint/FloatComparison:
@@ -39,10 +90,28 @@ Lint/FloatComparison:
 Lint/IdentityComparison:
   Enabled: true
 
+Lint/IncompatibleIoSelectWithFiberScheduler:
+  Enabled: true
+
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+
 Lint/MissingSuper:
   Enabled: true
 
 Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+
+Lint/NonAtomicFileOperation:
+  Enabled: true
+
+Lint/NumberedParameterAssignment:
+  Enabled: true
+
+Lint/OrAssignmentToConstant:
   Enabled: true
 
 Lint/OutOfRangeRegexpRef:
@@ -51,10 +120,28 @@ Lint/OutOfRangeRegexpRef:
 Lint/RaiseException:
   Enabled: true
 
+Lint/RedundantDirGlobSort:
+  Enabled: true
+
+Lint/RefinementImportMethods:
+  Enabled: true
+
+Lint/RequireRangeParentheses:
+  Enabled: true
+
+Lint/RequireRelativeSelfPath:
+  Enabled: true
+
 Lint/SelfAssignment:
   Enabled: true
 
 Lint/StructNewOverride:
+  Enabled: true
+
+Lint/SymbolConversion:
+  Enabled: true
+
+Lint/ToEnumArguments:
   Enabled: true
 
 Lint/TopLevelReturnWithArgument:
@@ -63,19 +150,46 @@ Lint/TopLevelReturnWithArgument:
 Lint/TrailingCommaInAttributeDeclaration:
   Enabled: true
 
+Lint/TripleQuotes:
+  Enabled: true
+
+Lint/UnexpectedBlockArity:
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
+
 Lint/UnreachableLoop:
   Enabled: true
 
 Lint/UselessMethodDefinition:
   Enabled: true
 
+Lint/UselessRuby2Keywords:
+  Enabled: true
+
 Lint/UselessTimes:
+  Enabled: true
+
+Naming/BlockForwarding:
+  Enabled: true
+
+Security/CompoundHash:
+  Enabled: true
+
+Security/IoMethods:
   Enabled: true
 
 Style/AccessorGrouping:
   Enabled: true
 
+Style/ArgumentsForwarding:
+  Enabled: true
+
 Style/ArrayCoercion:
+  Enabled: true
+
+Style/ArrayIntersect:
   Enabled: true
 
 Style/BisectedAttrAccessor:
@@ -84,7 +198,25 @@ Style/BisectedAttrAccessor:
 Style/CaseLikeIf:
   Enabled: true
 
+Style/CollectionCompact:
+  Enabled: true
+
 Style/CombinableLoops:
+  Enabled: true
+
+Style/ConcatArrayLiterals:
+  Enabled: true
+
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
+
+Style/EmptyHeredoc:
+  Enabled: true
+
+Style/EndlessMethod:
+  Enabled: true
+
+Style/EnvHome:
   Enabled: true
 
 Style/ExplicitBlockArgument:
@@ -93,13 +225,28 @@ Style/ExplicitBlockArgument:
 Style/ExponentialNotation:
   Enabled: true
 
+Style/FetchEnvVar:
+  Enabled: true
+
+Style/FileRead:
+  Enabled: true
+
+Style/FileWrite:
+  Enabled: true
+
 Style/GlobalStdStream:
   Enabled: true
 
 Style/HashAsLastArrayItem:
   Enabled: true
 
+Style/HashConversion:
+  Enabled: true
+
 Style/HashEachMethods:
+  Enabled: true
+
+Style/HashExcept:
   Enabled: true
 
 Style/HashLikeCase:
@@ -111,19 +258,85 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
+
+Style/InPatternThen:
+  Enabled: true
+
 Style/KeywordParametersOrder:
+  Enabled: true
+
+Style/MagicCommentFormat:
+  Enabled: true
+
+Style/MapCompactWithConditionalBlock:
+  Enabled: true
+
+Style/MapToHash:
+  Enabled: true
+
+Style/MapToSet:
+  Enabled: true
+
+Style/MinMaxComparison:
+  Enabled: true
+
+Style/MultilineInPatternThen:
+  Enabled: true
+
+Style/NegatedIfElseCondition:
+  Enabled: true
+
+Style/NestedFileDirname:
+  Enabled: true
+
+Style/NilLambda:
+  Enabled: true
+
+Style/NumberedParameters:
+  Enabled: true
+
+Style/NumberedParametersLimit:
+  Enabled: true
+
+Style/ObjectThen:
+  Enabled: true
+
+Style/OpenStructUse:
+  Enabled: true
+
+Style/OperatorMethodCall:
   Enabled: true
 
 Style/OptionalBooleanParameter:
   Enabled: true
 
+Style/QuotedSymbols:
+  Enabled: true
+
+Style/RedundantArgument:
+  Enabled: true
+
 Style/RedundantAssignment:
+  Enabled: true
+
+Style/RedundantConstantBase:
+  Enabled: true
+
+Style/RedundantDoubleSplatHashBraces:
+  Enabled: true
+
+Style/RedundantEach:
   Enabled: true
 
 Style/RedundantFetchBlock:
   Enabled: true
 
 Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
+Style/RedundantInitialize:
   Enabled: true
 
 Style/RedundantRegexpCharacterClass:
@@ -135,6 +348,15 @@ Style/RedundantRegexpEscape:
 Style/RedundantSelfAssignment:
   Enabled: true
 
+Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/RedundantStringEscape:
+  Enabled: true
+
+Style/SelectByRegexp:
+  Enabled: true
+
 Style/SingleArgumentDig:
   Enabled: true
 
@@ -144,5 +366,14 @@ Style/SlicingWithRange:
 Style/SoleNestedConditional:
   Enabled: true
 
+Style/StringChars:
+  Enabled: true
+
 Style/StringConcatenation:
+  Enabled: true
+
+Style/SwapValues:
+  Enabled: true
+
+Style/YodaExpression:
   Enabled: true

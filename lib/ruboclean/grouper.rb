@@ -14,7 +14,7 @@ module Ruboclean
       @config_hash.each_with_object(empty_groups) do |item, result|
         key, value = item
         target_group = find_target_group(key)
-        result[target_group].merge! Hash[key, value]
+        result[target_group].merge!({ key => value })
       end
     end
 

@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
 
   spec.executables << 'ruboclean'
   spec.require_paths = ['lib']
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end
