@@ -10,6 +10,7 @@ Rails:
 AllCops:
   Exclude:
   - bin/**/*
+  - !ruby/regexp /old_and_unused\.rb$/
 
 require:
 - rubocop-rails

@@ -6,6 +6,8 @@ require "yaml"
 module Ruboclean
   # Interface for reading and writing the `.rubocop.yml` file
   class RubocopConfigurationPath
+    PERMITTED_CLASSED = [Regexp].freeze
+
     # Thrown if given path is invalid
     class InvalidPathError < StandardError
       def initialize(path)
@@ -41,7 +43,7 @@ module Ruboclean
     end
 
     def load_yaml
-      YAML.safe_load(@rubocop_configuration_path.read)
+      YAML.safe_load(@rubocop_configuration_path.read, permitted_classes: PERMITTED_CLASSED)
     end
   end
 end
