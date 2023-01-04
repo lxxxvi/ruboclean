@@ -31,6 +31,7 @@ class RubocopConfigurationPathTest < BaseTest
     using_fixture_file('02_input_empty.yml') do |rubocop_configuration_pathname|
       rubocop_configuration_path = Ruboclean::RubocopConfigurationPath.new(rubocop_configuration_pathname)
       rubocop_configuration_path.write({ 'AllCops' => { 'Enabled' => false } })
+
       assert_equal expected_yaml, rubocop_configuration_pathname.read
     end
   end
