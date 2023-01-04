@@ -9,6 +9,7 @@ require:
 AllCops:
   Exclude:
   - bin/**/*
+  - !ruby/regexp /old_and_unused\.rb$/
 
 Rails:
   Enabled: true
