@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ruboclean/grouper'
+require "ruboclean/grouper"
 
 module Ruboclean
   # Orders the items within the groups alphabetically

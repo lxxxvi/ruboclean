@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'pathname'
-require 'yaml'
+require "pathname"
+require "yaml"
 
 module Ruboclean
   # Interface for reading and writing the `.rubocop.yml` file
@@ -17,7 +17,7 @@ module Ruboclean
       input_path = Pathname.new(path)
 
       @rubocop_configuration_path = if input_path.directory?
-                                      input_path.join('.rubocop.yml')
+                                      input_path.join(".rubocop.yml")
                                     else
                                       input_path
                                     end
