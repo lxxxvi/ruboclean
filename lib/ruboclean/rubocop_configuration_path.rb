@@ -31,9 +31,10 @@ module Ruboclean
       Ruboclean::RubocopConfiguration.new(load_yaml)
     end
 
-    def write(rubocop_configuration)
-      output = sanitize_yaml(rubocop_configuration.to_yaml)
-      @rubocop_configuration_path.write(output)
+    def write(rubocop_configuration, preserve_comments: false)
+      output_yaml = sanitize_yaml(rubocop_configuration.to_yaml)
+      output_yaml = preserve_preceding_comments(source_yaml, output_yaml) if preserve_comments
+      @rubocop_configuration_path.write(output_yaml)
     end
 
     private
@@ -43,7 +44,25 @@ module Ruboclean
     end
 
     def load_yaml
-      YAML.safe_load(@rubocop_configuration_path.read, permitted_classes: PERMITTED_CLASSED)
+      YAML.safe_load(source_yaml, permitted_classes: PERMITTED_CLASSED)
+    end
+
+    def source_yaml
+      @source_yaml ||= @rubocop_configuration_path.read
+    end
+
+    def preserve_preceding_comments(source, target)
+      target.dup.tap do |output|
+        source.scan(/(((^ *#.*\n|^\s*\n)+)(?![\s#]).+)/) do |groups|
+          config_keys_with_preceding_lines = groups.first
+          *preceding_lines, config_key = config_keys_with_preceding_lines.split("\n")
+
+          next if preceding_lines.all?(:empty?)
+          next if config_key.gsub(/\s/, "").empty?
+
+          output.sub!(/^#{config_key}$/, config_keys_with_preceding_lines.strip)
+        end
+      end
     end
   end
 end
