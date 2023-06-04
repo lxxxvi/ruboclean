@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class GrouperTest < BaseTest
+class Ruboclean::GrouperTest < BaseTest
   def test_group_config_with_empty_configuration
     config_hash = {}
 

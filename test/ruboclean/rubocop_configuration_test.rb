@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class RubocopConfigurationTest < BaseTest
+class Ruboclean::RubocopConfigurationTest < BaseTest
   def test_order
     input = { "Rails" => { Enabled: false }, "AllCops" => { Enabled: true } }
     output = { "AllCops" => { Enabled: true }, "Rails" => { Enabled: false } }

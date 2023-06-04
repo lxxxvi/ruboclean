@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class RubocopConfigurationPathTest < BaseTest
+class Ruboclean::RubocopConfigurationPathTest < BaseTest
   def test_invalid_path_error
     error = assert_raises Ruboclean::RubocopConfigurationPath::InvalidPathError do
       Ruboclean::RubocopConfigurationPath.new("does-not-exist")

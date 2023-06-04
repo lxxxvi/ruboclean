@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class OrdererTest < BaseTest
+class Ruboclean::OrdererTest < BaseTest
   def test_order_all
     input = { "Foo/Foo" => nil, "Foo/Faa" => nil, "Baz" => nil, "Bar" => nil, "require" => nil, "inherit_from" => nil }
     output = { "inherit_from" => nil, "require" => nil, "Bar" => nil, "Baz" => nil, "Foo/Faa" => nil, "Foo/Foo" => nil }
