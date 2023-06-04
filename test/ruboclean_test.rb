@@ -8,20 +8,20 @@ class RubocleanTest < BaseTest
   end
 
   def test_run
-    using_fixture_file("00_input.yml") do |rubocop_configuration_pathname|
-      Ruboclean.run_from_cli!(rubocop_configuration_pathname)
+    using_fixture_file("00_input.yml") do |fixture_pathname|
+      Ruboclean.run_from_cli!(fixture_pathname)
 
       assert_equal fixture_file_path("00_expected_output.yml").read,
-                   rubocop_configuration_pathname.read
+                   fixture_pathname.read
     end
   end
 
   def test_run_without_require_block
-    using_fixture_file("01_input_without_require_block.yml") do |rubocop_configuration_pathname|
-      Ruboclean.run_from_cli!(rubocop_configuration_pathname)
+    using_fixture_file("01_input_without_require_block.yml") do |fixture_pathname|
+      Ruboclean.run_from_cli!(fixture_pathname)
 
       assert_equal fixture_file_path("01_expected_output_without_require_block.yml").read,
-                   rubocop_configuration_pathname.read
+                   fixture_pathname.read
     end
   end
 end

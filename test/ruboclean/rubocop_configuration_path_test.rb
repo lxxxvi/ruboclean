@@ -12,27 +12,27 @@ class Ruboclean::RubocopConfigurationPathTest < BaseTest
   end
 
   def test_load_with_file_path
-    using_fixture_file("00_input.yml") do |rubocop_configuration_pathname|
-      Ruboclean::RubocopConfigurationPath.new(rubocop_configuration_pathname).load.tap do |result|
+    using_fixture_file("00_input.yml") do |fixture_pathname|
+      Ruboclean::RubocopConfigurationPath.new(fixture_pathname).load.tap do |result|
         assert_equal Ruboclean::RubocopConfiguration, result.class
       end
     end
   end
 
   def test_load_with_directory_path
-    using_fixture_file("00_input.yml") do |rubocop_configuration_pathname|
-      Ruboclean::RubocopConfigurationPath.new(rubocop_configuration_pathname.dirname).load.tap do |result|
+    using_fixture_file("00_input.yml") do |fixture_pathname|
+      Ruboclean::RubocopConfigurationPath.new(fixture_pathname.dirname).load.tap do |result|
         assert_equal Ruboclean::RubocopConfiguration, result.class
       end
     end
   end
 
   def test_write
-    using_fixture_file("02_input_empty.yml") do |rubocop_configuration_pathname|
-      rubocop_configuration_path = Ruboclean::RubocopConfigurationPath.new(rubocop_configuration_pathname)
+    using_fixture_file("02_input_empty.yml") do |fixture_pathname|
+      rubocop_configuration_path = Ruboclean::RubocopConfigurationPath.new(fixture_pathname)
       rubocop_configuration_path.write({ "AllCops" => { "Enabled" => false } })
 
-      assert_equal expected_yaml, rubocop_configuration_pathname.read
+      assert_equal expected_yaml, fixture_pathname.read
     end
   end
 
