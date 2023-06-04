@@ -4,10 +4,6 @@ require:
 - rubocop-minitest
 - rubocop-rake
 
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
-
 Gemspec/DeprecatedAttributeAssignment:
   Enabled: true
 
@@ -449,6 +445,10 @@ Style/StringChars:
 
 Style/StringConcatenation:
   Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
 
 Style/SwapValues:
   Enabled: true
