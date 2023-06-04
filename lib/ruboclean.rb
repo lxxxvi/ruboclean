@@ -9,7 +9,7 @@ require "ruboclean/orderer"
 module Ruboclean
   class Error < StandardError; end
 
-  def self.run(path)
+  def self.run_from_cli!(path)
     rubocop_configuration_path = RubocopConfigurationPath.new(path)
     rubocop_configuration = rubocop_configuration_path.load
     rubocop_configuration_path.write(rubocop_configuration.order)
