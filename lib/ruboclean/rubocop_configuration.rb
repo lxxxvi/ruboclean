@@ -10,5 +10,9 @@ module Ruboclean
     def order
       Ruboclean::Orderer.new(@config_hash).order
     end
+
+    def nil?
+      @config_hash.nil?
+    end
   end
 end

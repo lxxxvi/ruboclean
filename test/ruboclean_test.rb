@@ -7,21 +7,49 @@ class RubocleanTest < BaseTest
     refute_nil ::Ruboclean::VERSION
   end
 
-  def test_run
-    using_fixture_file("00_input.yml") do |rubocop_configuration_pathname|
-      Ruboclean.run(rubocop_configuration_pathname)
+  def test_run_from_cli_without_arguments
+    using_fixture_file("00_input.yml") do |fixture_path, directory_path|
+      expected_output = fixture_file_path("00_expected_output.yml").read
 
-      assert_equal fixture_file_path("00_expected_output.yml").read,
-                   rubocop_configuration_pathname.read
+      Dir.chdir(directory_path) do
+        Ruboclean.run_from_cli!([])
+
+        assert_equal expected_output, Pathname.new(fixture_path).read
+      end
     end
   end
 
-  def test_run_without_require_block
-    using_fixture_file("01_input_without_require_block.yml") do |rubocop_configuration_pathname|
-      Ruboclean.run(rubocop_configuration_pathname)
+  def test_run_from_cli_with_path_to_configuration_directory
+    using_fixture_file("00_input.yml") do |fixture_path, directory_path|
+      Ruboclean.run_from_cli!(Array(directory_path))
 
-      assert_equal fixture_file_path("01_expected_output_without_require_block.yml").read,
-                   rubocop_configuration_pathname.read
+      assert_equal fixture_file_path("00_expected_output.yml").read,
+                   Pathname.new(fixture_path).read
+    end
+  end
+
+  def test_run_from_cli_with_path_to_configuration_file
+    using_fixture_file("00_input.yml") do |fixture_path|
+      Ruboclean.run_from_cli!(Array(fixture_path))
+
+      assert_equal fixture_file_path("00_expected_output.yml").read,
+                   Pathname.new(fixture_path).read
+    end
+  end
+
+  def test_run_from_cli_without_silent_option
+    using_fixture_file("02_input_empty.yml") do |fixture_path|
+      assert_output(/^Using path '.*' \.\.\. done.$/) do
+        Ruboclean.run_from_cli!(Array(fixture_path))
+      end
+    end
+  end
+
+  def test_run_from_cli_with_silent_option
+    using_fixture_file("02_input_empty.yml") do |fixture_path|
+      assert_output(/^$/) do
+        Ruboclean.run_from_cli!([fixture_path, "--silent"])
+      end
     end
   end
 end
