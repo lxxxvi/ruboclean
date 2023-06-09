@@ -13,7 +13,7 @@ module Ruboclean
 
       return if rubocop_configuration.nil?
 
-      rubocop_configuration_path.write(rubocop_configuration.order)
+      rubocop_configuration_path.write(rubocop_configuration.order, preserve_comments: arguments.preserve_comments?)
     end
 
     private

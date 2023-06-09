@@ -30,8 +30,9 @@ AllCops:
   Exclude:
   - bin/**/*
 
+# Preceding comments will be removed unless the --preserve-comments option is used.
 require:
-- rubocop-rails
+- rubocop-rails # Inline comments will always be removed.
 ```
 
 ### Output `.rubocop.yml`:
@@ -54,9 +55,7 @@ Layout/LineLength:
 
 Rails/ShortI18n:
   Enabled: true
-
 ```
-
 
 ## Installation
 
@@ -78,27 +77,24 @@ Or install it yourself as:
 gem install ruboclean
 ```
 
-## Usage
+## Command synopsis
 
 ```shell
-ruboclean [path]
+ruboclean [path] [--preserve-comments]
 ```
 
-* `path` is optional, it defaults to the current working directory
-* `path` can be a directory that contains a `.rubocop.yml`
-* `path` can be a path to a `.rubocop.yml` directly
+### Parameters
+
+| Parameter | Description |
+|:-|:-|
+| `path` | Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly. Defaults to the current working directory.  |
+| `--preserve-comments` |  Preserves **preceding** comments for each top-level entry in the configuration. Inline comments are **not** preserved. |
 
 ### Examples
 
 ```shell
-ruboclean                 # uses `.rubocop.yml` of current working directory
-```
-
-```shell
-ruboclean /path/to/dir    # uses `.rubocop.yml` of /path/to/dir
-```
-
-```shell
+ruboclean                             # uses `.rubocop.yml` of current working directory
+ruboclean /path/to/dir                # uses `.rubocop.yml` of /path/to/dir
 ruboclean /path/to/dir/.rubocop.yml
 ```
 
@@ -111,7 +107,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/lxxxvi/ruboclean. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/lxxxvi/ruboclean/blob/master/CODE_OF_CONDUCT.md).
-
 
 ## License
 

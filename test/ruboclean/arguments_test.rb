@@ -9,6 +9,7 @@ module Ruboclean
         assert_equal Dir.pwd.to_s, arguments.path
         assert_predicate arguments, :verbose?
         refute_predicate arguments, :silent?
+        refute_predicate arguments, :preserve_comments?
       end
     end
 
@@ -21,6 +22,13 @@ module Ruboclean
         assert_equal Dir.pwd.to_s, arguments.path
         refute_predicate arguments, :verbose?
         assert_predicate arguments, :silent?
+      end
+    end
+
+    def test_preserve_comments
+      Ruboclean::Arguments.new(["--preserve-comments"]).tap do |arguments|
+        assert_equal Dir.pwd.to_s, arguments.path
+        assert_predicate arguments, :preserve_comments?
       end
     end
   end

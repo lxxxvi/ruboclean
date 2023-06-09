@@ -1,19 +1,30 @@
+# multiline
+# preceding Rails/ShortI18n: comment
 Rails/ShortI18n:
   Enabled: true
 
 Layout/LineLength:
+# this comment should be removed
   Max: 120
+# preceding Rails: comment, empty line in between
 
 Rails:
   Enabled: true
+
+# multiline
+
+# preceding AllCops: comment, with newline gap
 
 AllCops:
   Exclude:
   - bin/**/*
   - !ruby/regexp /old_and_unused\.rb$/
 
+  # preceding require: comment, wrongly indented
 require:
 - rubocop-rails
 
+
+# preceding inherit_from: comment
 inherit_from:
 - shared.yml

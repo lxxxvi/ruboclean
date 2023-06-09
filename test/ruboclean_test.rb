@@ -21,7 +21,7 @@ class RubocleanTest < BaseTest
 
   def test_run_from_cli_with_path_to_configuration_directory
     using_fixture_file("00_input.yml") do |fixture_path, directory_path|
-      Ruboclean.run_from_cli!(Array(directory_path))
+      Ruboclean.run_from_cli!([directory_path, "--silent"])
 
       assert_equal fixture_file_path("00_expected_output.yml").read,
                    Pathname.new(fixture_path).read
@@ -30,7 +30,7 @@ class RubocleanTest < BaseTest
 
   def test_run_from_cli_with_path_to_configuration_file
     using_fixture_file("00_input.yml") do |fixture_path|
-      Ruboclean.run_from_cli!(Array(fixture_path))
+      Ruboclean.run_from_cli!([fixture_path, "--silent"])
 
       assert_equal fixture_file_path("00_expected_output.yml").read,
                    Pathname.new(fixture_path).read
@@ -40,7 +40,7 @@ class RubocleanTest < BaseTest
   def test_run_from_cli_without_silent_option
     using_fixture_file("02_input_empty.yml") do |fixture_path|
       assert_output(/^Using path '.*' \.\.\. done.$/) do
-        Ruboclean.run_from_cli!(Array(fixture_path))
+        Ruboclean.run_from_cli!([fixture_path])
       end
     end
   end
@@ -50,6 +50,15 @@ class RubocleanTest < BaseTest
       assert_output(/^$/) do
         Ruboclean.run_from_cli!([fixture_path, "--silent"])
       end
+    end
+  end
+
+  def test_run_preserve_comments
+    using_fixture_file("00_input.yml") do |fixture_path|
+      Ruboclean.run_from_cli!([fixture_path, "--silent", "--preserve-comments"])
+
+      assert_equal fixture_file_path("00_expected_output_with_preserved_comments.yml").read,
+                   Pathname.new(fixture_path).read
     end
   end
 end

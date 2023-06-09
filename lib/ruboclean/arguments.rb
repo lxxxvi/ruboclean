@@ -16,7 +16,11 @@ module Ruboclean
     end
 
     def silent?
-      @silent ||= find_silent
+      @silent ||= find_argument("--silent")
+    end
+
+    def preserve_comments?
+      @preserve_comments ||= find_argument("--preserve-comments")
     end
 
     private
@@ -31,10 +35,8 @@ module Ruboclean
       end
     end
 
-    def find_silent
-      command_line_arguments.any? do |argument|
-        argument == "--silent"
-      end
+    def find_argument(name)
+      command_line_arguments.any? { |argument| argument == name }
     end
   end
 end
