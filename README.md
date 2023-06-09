@@ -80,7 +80,7 @@ gem install ruboclean
 ## Command synopsis
 
 ```shell
-ruboclean [path] [--preserve-comments]
+ruboclean [path] [--silent] [--preserve-comments]
 ```
 
 ### Parameters
@@ -88,6 +88,7 @@ ruboclean [path] [--preserve-comments]
 | Parameter | Description |
 |:-|:-|
 | `path` | Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly. Defaults to the current working directory.  |
+| `--silent` | Suppress any output displayed on the screen when executing the command. |
 | `--preserve-comments` |  Preserves **preceding** comments for each top-level entry in the configuration. Inline comments are **not** preserved. |
 
 ### Examples
