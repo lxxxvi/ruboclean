@@ -15,7 +15,7 @@ module Ruboclean
     def test_load_with_file_path
       using_fixture_file("00_input.yml") do |fixture_path|
         Ruboclean::RubocopConfigurationPath.new(fixture_path).load.tap do |result|
-          assert_equal Ruboclean::RubocopConfiguration, result.class
+          assert_instance_of Ruboclean::RubocopConfiguration, result
         end
       end
     end
@@ -24,7 +24,7 @@ module Ruboclean
       using_fixture_file("00_input.yml") do |fixture_path|
         fixture_pathname = Pathname.new(fixture_path)
         Ruboclean::RubocopConfigurationPath.new(fixture_pathname.dirname).load.tap do |result| # rubocop:disable Minitest/EmptyLineBeforeAssertionMethods
-          assert_equal Ruboclean::RubocopConfiguration, result.class
+          assert_instance_of Ruboclean::RubocopConfiguration, result
         end
       end
     end

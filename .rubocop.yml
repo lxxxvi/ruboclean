@@ -7,6 +7,9 @@ require:
 Gemspec/DeprecatedAttributeAssignment:
   Enabled: true
 
+Gemspec/DevelopmentDependencies:
+  Enabled: true
+
 Gemspec/RequireMFA:
   Enabled: true
 
@@ -62,6 +65,9 @@ Lint/DuplicateElsifCondition:
   Enabled: true
 
 Lint/DuplicateMagicComment:
+  Enabled: true
+
+Lint/DuplicateMatchPattern:
   Enabled: true
 
 Lint/DuplicateRegexpCharacterClassElement:
@@ -169,10 +175,16 @@ Lint/UnreachableLoop:
 Lint/UselessMethodDefinition:
   Enabled: true
 
+Lint/UselessRescue:
+  Enabled: true
+
 Lint/UselessRuby2Keywords:
   Enabled: true
 
 Lint/UselessTimes:
+  Enabled: true
+
+Metrics/CollectionLiteralLength:
   Enabled: true
 
 Minitest/AssertInDelta:
@@ -196,6 +208,9 @@ Minitest/AssertRaisesCompoundBody:
 Minitest/AssertRaisesWithRegexpArgument:
   Enabled: true
 
+Minitest/AssertSame:
+  Enabled: true
+
 Minitest/AssertSilent:
   Enabled: true
 
@@ -211,12 +226,18 @@ Minitest/DuplicateTestRun:
 Minitest/EmptyLineBeforeAssertionMethods:
   Enabled: true
 
+Minitest/LifecycleHooksOrder:
+  Enabled: true
+
 Minitest/LiteralAsActualArgument:
   Enabled: true
 
 Minitest/MultipleAssertions:
   Enabled: true
   Max: 5
+
+Minitest/NonPublicTestMethod:
+  Enabled: true
 
 Minitest/RefuteInDelta:
   Enabled: true
@@ -230,10 +251,19 @@ Minitest/RefutePathExists:
 Minitest/RefutePredicate:
   Enabled: true
 
+Minitest/RefuteSame:
+  Enabled: true
+
+Minitest/ReturnInTestMethod:
+  Enabled: true
+
 Minitest/SkipEnsure:
   Enabled: true
 
 Minitest/SkipWithoutReason:
+  Enabled: true
+
+Minitest/TestFileName:
   Enabled: true
 
 Minitest/TestMethodName:
@@ -243,6 +273,9 @@ Minitest/UnreachableAssertion:
   Enabled: true
 
 Minitest/UnspecifiedException:
+  Enabled: true
+
+Minitest/UselessAssertion:
   Enabled: true
 
 Naming/BlockForwarding:
@@ -278,7 +311,16 @@ Style/CollectionCompact:
 Style/CombinableLoops:
   Enabled: true
 
+Style/ComparableClamp:
+  Enabled: true
+
 Style/ConcatArrayLiterals:
+  Enabled: true
+
+Style/DataInheritance:
+  Enabled: true
+
+Style/DirEmpty:
   Enabled: true
 
 Style/DocumentDynamicEvalDefinition:
@@ -293,6 +335,9 @@ Style/EndlessMethod:
 Style/EnvHome:
   Enabled: true
 
+Style/ExactRegexpMatch:
+  Enabled: true
+
 Style/ExplicitBlockArgument:
   Enabled: true
 
@@ -300,6 +345,9 @@ Style/ExponentialNotation:
   Enabled: true
 
 Style/FetchEnvVar:
+  Enabled: true
+
+Style/FileEmpty:
   Enabled: true
 
 Style/FileRead:
@@ -392,6 +440,9 @@ Style/QuotedSymbols:
 Style/RedundantArgument:
   Enabled: true
 
+Style/RedundantArrayConstructor:
+  Enabled: true
+
 Style/RedundantAssignment:
   Enabled: true
 
@@ -410,10 +461,22 @@ Style/RedundantFetchBlock:
 Style/RedundantFileExtensionInRequire:
   Enabled: true
 
+Style/RedundantFilterChain:
+  Enabled: true
+
+Style/RedundantHeredocDelimiterQuotes:
+  Enabled: true
+
 Style/RedundantInitialize:
   Enabled: true
 
+Style/RedundantLineContinuation:
+  Enabled: true
+
 Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpConstructor:
   Enabled: true
 
 Style/RedundantRegexpEscape:

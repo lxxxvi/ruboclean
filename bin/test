@@ -20,7 +20,7 @@ class BinTest
       system! "bundle exec rake test"
 
       puts "\n== Run rubocop =="
-      system! "bundle exec rubocop -p"
+      system! "bundle exec rubocop --parallel"
     end
   end
 end
