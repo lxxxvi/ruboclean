@@ -9,7 +9,7 @@ module Ruboclean
       output = { "AllCops" => { Enabled: true }, "Rails" => { Enabled: false } }
 
       Ruboclean::RubocopConfiguration.new(input).order.tap do |ordered_output|
-        assert_equal Hash, ordered_output.class
+        assert_instance_of Hash, ordered_output
         assert_equal output.to_a, ordered_output.to_a
       end
     end
