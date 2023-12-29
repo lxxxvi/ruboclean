@@ -11,7 +11,7 @@ module Ruboclean
     # Thrown if given path is invalid
     class InvalidPathError < StandardError
       def initialize(path)
-        super "path does not exist: '#{path}'"
+        super("path does not exist: '#{path}'")
       end
     end
 
