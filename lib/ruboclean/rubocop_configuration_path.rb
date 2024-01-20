@@ -6,7 +6,7 @@ require "yaml"
 module Ruboclean
   # Interface for reading and writing the `.rubocop.yml` file
   class RubocopConfigurationPath
-    PERMITTED_CLASSES = [Regexp, Symbol].freeze
+    PERMITTED_CLASSES = [Regexp].freeze
 
     # Thrown if given path is invalid
     class InvalidPathError < StandardError
