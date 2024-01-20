@@ -13,7 +13,7 @@ module Ruboclean
     def cleanup
       %i[Include Exclude].each do |kind|
         select_stanzas(kind).each do |cop|
-          paths = @config_hash.dig(cop, kind.to_s) || @config_hash.dig(cop, kind.to_sym)
+          paths = @config_hash.dig(cop, kind)
           paths&.select! { |path| regexp_or_wildcard?(path) || File.exist?(path) }
         end
       end
@@ -26,7 +26,7 @@ module Ruboclean
         cop, value = item
         next unless value.is_a?(Hash)
 
-        result << cop if value.key?(kind.to_s) || value.key?(kind.to_sym)
+        result << cop if value.key?(kind)
       end
     end
 
