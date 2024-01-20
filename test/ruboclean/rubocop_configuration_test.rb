@@ -18,7 +18,7 @@ module Ruboclean
       input = { SomeCop: { Include: ["some_other_file.rb", "test/fixtures/file_exists.rb", "lib/**/*.rb"] } }
       output = { SomeCop: { Include: ["test/fixtures/file_exists.rb", "lib/**/*.rb"] } }
 
-      Ruboclean::RubocopConfiguration.new(input).cleanup.tap do |cleaned_output|
+      Ruboclean::RubocopConfiguration.new(input).path_cleanup.tap do |cleaned_output|
         assert_instance_of Hash, cleaned_output
         assert_equal output.to_a, cleaned_output.to_a
       end

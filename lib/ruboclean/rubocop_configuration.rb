@@ -11,13 +11,13 @@ module Ruboclean
       Ruboclean::Orderer.new(@config_hash).order
     end
 
-    def cleanup
+    def path_cleanup
       Ruboclean::PathCleanup.new(@config_hash).cleanup
     end
 
     def perform
       @config_hash = order
-      cleanup
+      path_cleanup
     end
 
     def nil?
