@@ -22,11 +22,10 @@ module Ruboclean
     end
 
     def select_stanzas(kind)
-      @config_hash.each_with_object([]) do |item, result|
-        cop, value = item
+      @config_hash.filter_map do |cop, value|
         next unless value.is_a?(Hash)
 
-        result << cop if value.key?(kind)
+        cop if value.key?(kind)
       end
     end
 
