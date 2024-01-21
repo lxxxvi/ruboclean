@@ -6,6 +6,7 @@ require "ruboclean/rubocop_configuration"
 require "ruboclean/rubocop_configuration_path"
 require "ruboclean/runner"
 require "ruboclean/orderer"
+require "ruboclean/path_cleanup"
 
 # Ruboclean entry point
 module Ruboclean
