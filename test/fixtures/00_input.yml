@@ -19,6 +19,7 @@ AllCops:
   Exclude:
   - bin/**/*
   - !ruby/regexp /old_and_unused\.rb$/
+  - does_not_exist.rb
 
   # preceding require: comment, wrongly indented
 require:

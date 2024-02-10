@@ -11,22 +11,41 @@ module Ruboclean
     end
 
     def cleanup
-      %i[Include Exclude].each do |kind|
-        select_stanzas(kind).each do |cop|
-          paths = @configuration_hash.dig(cop, kind)
-          paths&.select! { |path| regexp_or_wildcard?(path) || File.exist?(path) }
-        end
-      end
-
-      @configuration_hash
+      configuration_hash.transform_values(&method(:process_top_level_values))
     end
 
-    def select_stanzas(kind)
-      @configuration_hash.filter_map do |cop, value|
-        next unless value.is_a?(Hash)
+    private
 
-        cop if value.key?(kind)
+    attr_reader :configuration_hash
+
+    # top_level_value could be something like this:
+    #
+    # {
+    #   Include: [...],
+    #   Exclude: [...],
+    #   EnforcedStyle: "..."
+    # }
+    #
+    # We process it further in case of a Hash.
+    def process_top_level_values(top_level_value)
+      return top_level_value unless top_level_value.is_a?(Hash)
+
+      top_level_value.each_with_object({}) do |(cop_property_key, cop_property_value), agg|
+        agg[cop_property_key] = process_cop_property(cop_property_key, cop_property_value)
       end
+    end
+
+    def process_cop_property(cop_property_key, cop_property_value)
+      return cop_property_value unless %w[Include Exclude].include?(cop_property_key.to_s)
+      return cop_property_value unless cop_property_value.respond_to?(:filter_map)
+
+      cop_property_value.find_all do |item|
+        path_exists?(item)
+      end
+    end
+
+    def path_exists?(item)
+      regexp_or_wildcard?(item) || File.exist?(item)
     end
 
     def regexp_or_wildcard?(path)
