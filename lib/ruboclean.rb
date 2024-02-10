@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "ruboclean/version"
 require "ruboclean/cli_arguments"
-require "ruboclean/runner"
 require "ruboclean/orderer"
 require "ruboclean/path_cleanup"
+require "ruboclean/runner"
+require "ruboclean/version"
 
 # Ruboclean entry point
 module Ruboclean
