@@ -6,12 +6,12 @@ module Ruboclean
   #   - namespaces: every item which does **not** include an "/"
   #   - cops: every item which **includes** an "/"
   class Grouper
-    def initialize(config_hash)
-      @config_hash = config_hash
+    def initialize(configuration_hash)
+      @configuration_hash = configuration_hash
     end
 
     def group_config
-      @config_hash.each_with_object(empty_groups) do |item, result|
+      configuration_hash.each_with_object(empty_groups) do |item, result|
         key, value = item
         target_group = find_target_group(key)
         result[target_group].merge!({ key => value })
@@ -19,6 +19,8 @@ module Ruboclean
     end
 
     private
+
+    attr_reader :configuration_hash
 
     def empty_groups
       { base: {}, namespaces: {}, cops: {} }

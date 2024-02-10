@@ -18,11 +18,12 @@ class BaseTest < Minitest::Test
     TEST_FIXTURES_PATH.join(file_name)
   end
 
-  def using_fixture_file(file_name)
+  def using_fixture_files(rubocop_configuration_file, _additional_files = [])
     Dir.mktmpdir do |tmpdir|
       tempdir_path = Pathname.new(tmpdir)
       fixture_path = tempdir_path.join(".rubocop.yml")
-      FileUtils.copy_file(fixture_file_path(file_name), fixture_path)
+
+      FileUtils.copy_file(fixture_file_path(rubocop_configuration_file), fixture_path)
 
       yield fixture_path.to_s, tmpdir
     end

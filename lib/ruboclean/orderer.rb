@@ -5,8 +5,8 @@ require "ruboclean/grouper"
 module Ruboclean
   # Orders the items within the groups alphabetically
   class Orderer
-    def initialize(config_hash)
-      @config_hash = config_hash
+    def initialize(configuration_hash)
+      @configuration_hash = configuration_hash
     end
 
     def order
@@ -18,12 +18,14 @@ module Ruboclean
 
     private
 
-    def order_by_key(config_hash)
-      config_hash.sort_by(&:first).to_h
+    attr_reader :configuration_hash
+
+    def order_by_key(group_items)
+      group_items.sort_by(&:first).to_h
     end
 
     def grouped_config
-      Ruboclean::Grouper.new(@config_hash).group_config
+      Ruboclean::Grouper.new(configuration_hash).group_config
     end
   end
 end

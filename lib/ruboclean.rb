@@ -2,8 +2,6 @@
 
 require "ruboclean/version"
 require "ruboclean/cli_arguments"
-require "ruboclean/rubocop_configuration"
-require "ruboclean/rubocop_configuration_path"
 require "ruboclean/runner"
 require "ruboclean/orderer"
 require "ruboclean/path_cleanup"
