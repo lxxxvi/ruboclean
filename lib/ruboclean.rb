@@ -8,12 +8,10 @@ require "ruboclean/path_cleanup"
 
 # Ruboclean entry point
 module Ruboclean
-  class Error < StandardError; end
-
   def self.run_from_cli!(args)
-    cli_arguments = Ruboclean::CliArguments.new(args)
-    print "Using path '#{cli_arguments.path}' ... " if cli_arguments.verbose?
-    Runner.new(cli_arguments).run!
-    puts "done." if cli_arguments.verbose?
+    runner = Runner.new(args)
+    print "Using path '#{runner.path}' ... " if runner.verbose?
+    runner.run!
+    puts "done." if runner.verbose?
   end
 end

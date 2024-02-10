@@ -6,8 +6,8 @@ require "yaml"
 module Ruboclean
   # Entry point for processing
   class Runner
-    def initialize(cli_arguments)
-      @cli_arguments = cli_arguments
+    def initialize(args = [])
+      @cli_arguments = CliArguments.new(args)
     end
 
     def run!
@@ -17,6 +17,14 @@ module Ruboclean
                .then(&method(:cleanup_paths))
                .then(&method(:preserve_comments))
                .then(&method(:write_file!))
+    end
+
+    def verbose?
+      cli_arguments.verbose?
+    end
+
+    def path
+      cli_arguments.path
     end
 
     private
