@@ -15,7 +15,7 @@ module Ruboclean
 
       load_file.then(&method(:order))
                .then(&method(:cleanup_paths))
-               .then(&method(:preserve_comments))
+               .then(&method(:convert_to_yaml))
                .then(&method(:write_file!))
     end
 
@@ -40,19 +40,15 @@ module Ruboclean
     end
 
     def order(configuration_hash)
-      Ruboclean::Orderer.new(configuration_hash).order
+      Orderer.new(configuration_hash).order
     end
 
     def cleanup_paths(configuration_hash)
-      Ruboclean::PathCleanup.new(configuration_hash).cleanup
+      PathCleanup.new(configuration_hash).cleanup
     end
 
-    def preserve_comments(configuration_hash)
-      target_yaml = sanitize_yaml(configuration_hash.to_yaml)
-
-      return target_yaml unless cli_arguments.preserve_comments?
-
-      preserve_preceding_comments(source_yaml, target_yaml)
+    def convert_to_yaml(configuration_hash)
+      ToYamlConverter.new(configuration_hash, cli_arguments, source_yaml).to_yaml
     end
 
     def write_file!(target_yaml)
@@ -71,24 +67,6 @@ module Ruboclean
       return source_path if source_path.exist?
 
       raise ArgumentError, "path does not exist: '#{source_path}'"
-    end
-
-    def sanitize_yaml(data)
-      data.gsub(/^([a-zA-Z]+)/, "\n\\1")
-    end
-
-    def preserve_preceding_comments(source, target)
-      target.dup.tap do |output|
-        source.scan(/(((^ *#.*\n|^\s*\n)+)(?![\s#]).+)/) do |groups|
-          config_keys_with_preceding_lines = groups.first
-          *preceding_lines, config_key = config_keys_with_preceding_lines.split("\n")
-
-          next if preceding_lines.all?(:empty?)
-          next if config_key.gsub(/\s/, "").empty?
-
-          output.sub!(/^#{config_key}$/, config_keys_with_preceding_lines.strip)
-        end
-      end
     end
   end
 end
