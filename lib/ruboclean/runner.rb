@@ -48,7 +48,7 @@ module Ruboclean
     end
 
     def convert_to_yaml(configuration_hash)
-      ToYamlConverter.new(configuration_hash, cli_arguments, source_yaml).to_yaml
+      ToYamlConverter.new(configuration_hash, cli_arguments.preserve_comments?, source_yaml).to_yaml
     end
 
     def write_file!(target_yaml)
