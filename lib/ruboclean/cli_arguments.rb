@@ -2,7 +2,7 @@
 
 module Ruboclean
   # Reads command line arguments and exposes corresponding reader methods
-  class Arguments
+  class CliArguments
     def initialize(command_line_arguments = [])
       @command_line_arguments = Array(command_line_arguments)
     end
