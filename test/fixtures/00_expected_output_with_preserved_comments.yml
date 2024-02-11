@@ -14,8 +14,11 @@ require:
 
 AllCops:
   Exclude:
-  - bin/**/*
-  - !ruby/regexp /old_and_unused\.rb$/
+  - lib/my_gem/**/*
+  - !ruby/regexp /does_not_exist\.rb$/
+  - !ruby/regexp /keep\.rb$/
+  - file_exists.rb
+  - subdirectory/file_exists.rb
 
 # preceding Rails: comment, empty line in between
 

@@ -18,7 +18,12 @@ Rails:
 AllCops:
   Exclude:
   - bin/**/*
-  - !ruby/regexp /old_and_unused\.rb$/
+  - lib/my_gem/**/*
+  - !ruby/regexp /does_not_exist\.rb$/
+  - !ruby/regexp /keep\.rb$/
+  - does_not_exist.rb
+  - file_exists.rb
+  - subdirectory/file_exists.rb
 
   # preceding require: comment, wrongly indented
 require:

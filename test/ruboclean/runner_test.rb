@@ -83,15 +83,14 @@ module Ruboclean
       end
     end
 
-    # TODO: enable
-    # def test_path_cleanup
-    #   input = { SomeCop: { Include: ["some_other_file.rb", "test/fixtures/file_exists.rb", "lib/**/*.rb"] } }
-    #   output = { SomeCop: { Include: ["test/fixtures/file_exists.rb", "lib/**/*.rb"] } }
+    def test_run_with_preserve_paths_flag
+      using_fixture_files("00_input.yml") do |fixture_path|
+        arguments = [fixture_path, "--preserve-paths"]
+        Ruboclean::Runner.new(arguments).run!
 
-    #   Ruboclean::RubocopConfiguration.new(input).path_cleanup.tap do |cleaned_output|
-    #     assert_instance_of Hash, cleaned_output
-    #     assert_equal output.to_a, cleaned_output.to_a
-    #   end
-    # end
+        assert_equal fixture_file_path("00_expected_output_with_preserved_paths.yml").read,
+                     Pathname.new(fixture_path).read
+      end
+    end
   end
 end

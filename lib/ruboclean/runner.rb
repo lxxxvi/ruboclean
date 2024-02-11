@@ -44,7 +44,9 @@ module Ruboclean
     end
 
     def cleanup_paths(configuration_hash)
-      PathCleanup.new(configuration_hash).cleanup
+      return configuration_hash if cli_arguments.preserve_paths?
+
+      PathCleanup.new(configuration_hash, source_file_pathname.dirname).cleanup
     end
 
     def convert_to_yaml(configuration_hash)

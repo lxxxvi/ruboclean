@@ -31,5 +31,12 @@ module Ruboclean
         assert_predicate cli_arguments, :preserve_comments?
       end
     end
+
+    def test_preserve_paths
+      Ruboclean::CliArguments.new(["--preserve-paths"]).tap do |cli_arguments|
+        assert_equal Dir.pwd.to_s, cli_arguments.path
+        assert_predicate cli_arguments, :preserve_paths?
+      end
+    end
   end
 end
