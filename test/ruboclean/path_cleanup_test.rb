@@ -9,7 +9,7 @@ module Ruboclean
       input = { SomeCop: { Include: ["some_other_file.rb", "file_exists.rb", "lib/**/*.rb"] } }
       output = { SomeCop: { Include: ["file_exists.rb", "lib/**/*.rb"] } }
 
-      assert_equal output, Ruboclean::PathCleanup.new(input, root_directory: root_directory).cleanup
+      assert_equal output, Ruboclean::PathCleanup.new(input, root_directory).cleanup
     end
 
     def test_path_cleanup_excludes
@@ -17,7 +17,7 @@ module Ruboclean
                                      "some_other_non_existent_file.rb", "not_here.rb"] } }
       output = { SomeCop: { Exclude: ["config/**/*.rb", "file_exists.rb"] } }
 
-      assert_equal output, Ruboclean::PathCleanup.new(input, root_directory: root_directory).cleanup
+      assert_equal output, Ruboclean::PathCleanup.new(input, root_directory).cleanup
     end
 
     # rubocop:disable Metrics/MethodLength
@@ -43,7 +43,7 @@ module Ruboclean
         }
       }
 
-      assert_equal output, Ruboclean::PathCleanup.new(input, root_directory: root_directory).cleanup
+      assert_equal output, Ruboclean::PathCleanup.new(input, root_directory).cleanup
     end
     # rubocop:enable Metrics/MethodLength
 

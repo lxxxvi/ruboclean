@@ -6,7 +6,7 @@ module Ruboclean
   # where the `.rubocop.yml` file is located. If a path includes a
   # wildcard, it's assumed to be valid.
   class PathCleanup
-    def initialize(configuration_hash, root_directory:)
+    def initialize(configuration_hash, root_directory)
       @configuration_hash = configuration_hash
       @root_directory = root_directory
     end

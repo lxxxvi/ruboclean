@@ -1,0 +1,24 @@
+---
+
+inherit_from:
+- shared.yml
+
+require:
+- rubocop-rails
+
+AllCops:
+  Exclude:
+  - bin/**/*
+  - !ruby/regexp /old_and_unused\.rb$/
+  - does_not_exist.rb
+  - file_exists.rb
+  - subdirectory/file_exists.rb
+
+Rails:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+
+Rails/ShortI18n:
+  Enabled: true

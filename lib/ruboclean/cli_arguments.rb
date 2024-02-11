@@ -23,6 +23,10 @@ module Ruboclean
       @preserve_comments ||= find_argument("--preserve-comments")
     end
 
+    def preserve_paths?
+      @preserve_paths ||= find_argument("--preserve-paths")
+    end
+
     private
 
     attr_reader :command_line_arguments
