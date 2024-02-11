@@ -13,9 +13,9 @@ module Ruboclean
     end
 
     def test_path_cleanup_excludes
-      input = { SomeCop: { Exclude: ["config/**/*.rb", "file_exists.rb",
+      input = { SomeCop: { Exclude: ["lib/**/*.rb", "file_exists.rb",
                                      "some_other_non_existent_file.rb", "not_here.rb"] } }
-      output = { SomeCop: { Exclude: ["config/**/*.rb", "file_exists.rb"] } }
+      output = { SomeCop: { Exclude: ["lib/**/*.rb", "file_exists.rb"] } }
 
       assert_equal output, Ruboclean::PathCleanup.new(input, root_directory).cleanup
     end
@@ -25,7 +25,7 @@ module Ruboclean
       input = {
         SomeCop: {
           Include: ["lib/**/*.rb", "not_here.rb"],
-          Exclude: ["config/**/*.rb", "file_exists.rb", "some_other_non_existent_file.rb"],
+          Exclude: ["lib/**/*.rb", "file_exists.rb", "some_other_non_existent_file.rb"],
           EnforcedStyle: "something"
         },
         SomeOtherCop: {
@@ -35,7 +35,7 @@ module Ruboclean
       output = {
         SomeCop: {
           Include: ["lib/**/*.rb"],
-          Exclude: ["config/**/*.rb", "file_exists.rb"],
+          Exclude: ["lib/**/*.rb", "file_exists.rb"],
           EnforcedStyle: "something"
         },
         SomeOtherCop: {

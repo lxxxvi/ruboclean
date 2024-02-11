@@ -9,4 +9,4 @@ Rails:
 
 AllCops:
   Exclude:
-  - bin/**/*
+  - lib/**/*

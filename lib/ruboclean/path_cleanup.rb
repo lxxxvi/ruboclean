@@ -46,11 +46,22 @@ module Ruboclean
     end
 
     def path_exists?(item)
-      regexp_or_wildcard?(item) || root_directory.join(item).exist?
+      regexp_pattern?(item) ||
+        specific_path_exists?(item) ||
+        any_global_command_pattern?(item)
     end
 
-    def regexp_or_wildcard?(path)
-      path.is_a?(Regexp) || path.include?("*")
+    def specific_path_exists?(item)
+      root_directory.join(item).exist?
+    end
+
+    def any_global_command_pattern?(item)
+      root_directory.glob(item).any?
+    end
+
+    # We don't support Regexp, so we just say it exists.
+    def regexp_pattern?(item)
+      item.is_a?(Regexp)
     end
   end
 end
