@@ -16,6 +16,8 @@ AllCops:
   Exclude:
   - bin/**/*
   - !ruby/regexp /old_and_unused\.rb$/
+  - file_exists.rb
+  - subdirectory/file_exists.rb
 
 # preceding Rails: comment, empty line in between
 

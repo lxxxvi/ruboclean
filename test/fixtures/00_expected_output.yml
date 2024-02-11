@@ -10,6 +10,8 @@ AllCops:
   Exclude:
   - bin/**/*
   - !ruby/regexp /old_and_unused\.rb$/
+  - file_exists.rb
+  - subdirectory/file_exists.rb
 
 Rails:
   Enabled: true
