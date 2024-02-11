@@ -28,7 +28,10 @@ Rails:
 
 AllCops:
   Exclude:
-  - bin/**/*
+  - path/file_exists.rb
+  - path_with_files/**/*
+  - path/file_does_not_exist.rb # This entry will be removed if the file doesn't exist. Skip with --preserve-paths option.
+  - path_without_files/**/* # Will be removed if no files within pattern exist. Skip with --preserve-paths option.
 
 # Preceding comments will be removed unless the --preserve-comments option is used.
 require:
@@ -45,7 +48,8 @@ require:
 
 AllCops:
   Exclude:
-  - bin/**/*
+  - path/file_exists.rb
+  - path_with_files/**/*
 
 Rails:
   Enabled: true
@@ -80,16 +84,17 @@ gem install ruboclean
 ## Command synopsis
 
 ```shell
-ruboclean [path] [--silent] [--preserve-comments]
+ruboclean [path] [--silent] [--preserve-comments] [--preserve-paths]
 ```
 
 ### Parameters
 
-| Parameter | Description |
-|:-|:-|
-| `path` | Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly. Defaults to the current working directory.  |
-| `--silent` | Suppress any output displayed on the screen when executing the command. |
-| `--preserve-comments` |  Preserves **preceding** comments for each top-level entry in the configuration. Inline comments are **not** preserved. |
+| Parameter             | Description                                                                                                                           |
+|:----------------------|:--------------------------------------------------------------------------------------------------------------------------------------|
+| `path`                | Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly. Defaults to the current working directory. |
+| `--silent`            | Suppress any output displayed on the screen when executing the command.                                                               |
+| `--preserve-comments` | Preserves **preceding** comments for each top-level entry in the configuration. Inline comments are **not** preserved.                |
+| `--preserve-paths`    | Skips the path cleanup that are applied against `Include:` and `Exclude:` configuration.                                              |
 
 ### Examples
 
