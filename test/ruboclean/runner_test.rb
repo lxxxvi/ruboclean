@@ -92,5 +92,15 @@ module Ruboclean
                      Pathname.new(fixture_path).read
       end
     end
+
+    def test_run_with_verify_flag
+      using_fixture_files("00_input.yml") do |fixture_path|
+        arguments = [fixture_path, "--verify"]
+        Ruboclean::Runner.new(arguments).run!
+
+        assert_equal fixture_file_path("00_input.yml").read,
+                     Pathname.new(fixture_path).read
+      end
+    end
   end
 end
