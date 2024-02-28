@@ -18,9 +18,7 @@ module Ruboclean
                      .then(&method(:cleanup_paths))
                      .then(&method(:convert_to_yaml))
 
-      return if verify?
-
-      write_file!(ordered_file)
+      write_file!(ordered_file) unless verify?
 
       changed?(ordered_file)
     end
