@@ -30,4 +30,24 @@ class RubocleanTest < BaseTest
 
     assert_equal 0, exit_code
   end
+
+  def test_run_from_cli_with_verify_option_when_no_changes
+    exit_code = assert_raises(SystemExit) do
+      using_fixture_files("00_expected_output.yml") do |fixture_path|
+        Ruboclean.run_from_cli!([fixture_path, "--silent", "--verify"])
+      end
+    end.status
+
+    assert_equal 0, exit_code
+  end
+
+  def test_run_from_cli_with_verify_option
+    exit_code = assert_raises(SystemExit) do
+      using_fixture_files("00_input.yml") do |fixture_path|
+        Ruboclean.run_from_cli!([fixture_path, "--silent", "--verify"])
+      end
+    end.status
+
+    assert_equal 1, exit_code
+  end
 end
