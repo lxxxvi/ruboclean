@@ -10,6 +10,7 @@ module Ruboclean
         assert_predicate cli_arguments, :verbose?
         refute_predicate cli_arguments, :silent?
         refute_predicate cli_arguments, :preserve_comments?
+        refute_predicate cli_arguments, :verify?
       end
     end
 
@@ -36,6 +37,13 @@ module Ruboclean
       Ruboclean::CliArguments.new(["--preserve-paths"]).tap do |cli_arguments|
         assert_equal Dir.pwd.to_s, cli_arguments.path
         assert_predicate cli_arguments, :preserve_paths?
+      end
+    end
+
+    def test_verify
+      Ruboclean::CliArguments.new(["--verify"]).tap do |cli_arguments|
+        assert_equal Dir.pwd.to_s, cli_arguments.path
+        assert_predicate cli_arguments, :verify?
       end
     end
   end
