@@ -8,27 +8,27 @@ class RubocleanTest < BaseTest
   end
 
   def test_run_from_cli_without_silent_option
-    exit_code = assert_raises(SystemExit) do
-      using_fixture_files("02_input_empty.yml") do |fixture_path|
-        assert_output(/^Using path '.*' \.\.\. done.$/) do
+    using_fixture_files("02_input_empty.yml") do |fixture_path|
+      assert_output(/^Using path '.*' \.\.\. done.$/) do
+        exit_code = assert_raises(SystemExit) do
           Ruboclean.run_from_cli!([fixture_path])
-        end
-      end
-    end.status
+        end.status
 
-    assert_equal 0, exit_code
+        assert_equal 0, exit_code
+      end
+    end
   end
 
   def test_run_from_cli_with_silent_option
-    exit_code = assert_raises(SystemExit) do
-      using_fixture_files("02_input_empty.yml") do |fixture_path|
-        assert_output(/^$/) do
+    using_fixture_files("02_input_empty.yml") do |fixture_path|
+      assert_output(/^$/) do
+        exit_code = assert_raises(SystemExit) do
           Ruboclean.run_from_cli!([fixture_path, "--silent"])
-        end
-      end
-    end.status
+        end.status
 
-    assert_equal 0, exit_code
+        assert_equal 0, exit_code
+      end
+    end
   end
 
   def test_run_from_cli_with_verify_option_when_no_changes
