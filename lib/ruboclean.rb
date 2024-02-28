@@ -2,6 +2,7 @@
 
 require "ruboclean/cli_arguments"
 require "ruboclean/orderer"
+require "ruboclean/logger"
 require "ruboclean/grouper"
 require "ruboclean/path_cleanup"
 require "ruboclean/runner"
