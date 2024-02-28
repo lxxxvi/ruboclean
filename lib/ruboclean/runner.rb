@@ -13,14 +13,22 @@ module Ruboclean
     def run!
       return if source_file_pathname.empty?
 
-      load_file.then(&method(:order))
-               .then(&method(:cleanup_paths))
-               .then(&method(:convert_to_yaml))
-               .then(&method(:write_file!))
+      ordered_file = load_file
+                     .then(&method(:order))
+                     .then(&method(:cleanup_paths))
+                     .then(&method(:convert_to_yaml))
+
+      return if verify?
+
+      write_file!(ordered_file)
     end
 
     def verbose?
       cli_arguments.verbose?
+    end
+
+    def verify?
+      cli_arguments.verify?
     end
 
     def path
