@@ -21,6 +21,12 @@ module Ruboclean
       return if verify?
 
       write_file!(ordered_file)
+
+      changed?(ordered_file)
+    end
+
+    def changed?(target_yaml)
+      target_yaml != source_yaml
     end
 
     def verbose?
