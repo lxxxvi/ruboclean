@@ -13,7 +13,10 @@ module Ruboclean
   def self.run_from_cli!(args)
     runner = Runner.new(args)
     print "Using path '#{runner.path}' ... " if runner.verbose?
-    runner.run!
+    have_no_change = !runner.run!
     puts "done." if runner.verbose?
+
+    exit have_no_change if runner.verify?
+    exit 0
   end
 end
