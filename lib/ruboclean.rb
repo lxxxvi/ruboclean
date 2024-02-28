@@ -14,12 +14,24 @@ module Ruboclean
   def self.run_from_cli!(args)
     runner = Runner.new(args)
     logger = Ruboclean::Logger.new(runner.verbose? ? :verbose : :none)
+
     logger.verbose "Using path '#{runner.path}' ... "
-    have_no_change = !runner.run!
+    changed = runner.run!
+    logger.verbose post_execution_message(changed, runner.verify?)
 
-    logger.verbose "done.\n"
-
-    exit have_no_change if runner.verify?
+    exit !changed if runner.verify?
     exit 0
+  end
+
+  def self.post_execution_message(changed, verify)
+    if changed
+      if verify
+        "needs clean.\n"
+      else
+        "done.\n"
+      end
+    else
+      "already clean.\n"
+    end
   end
 end
