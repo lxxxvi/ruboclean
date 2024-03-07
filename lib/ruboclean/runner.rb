@@ -13,14 +13,11 @@ module Ruboclean
     def run!
       return if source_file_pathname.empty?
 
-      ordered_file = load_file
-                     .then(&method(:order))
-                     .then(&method(:cleanup_paths))
-                     .then(&method(:convert_to_yaml))
-
-      write_file!(ordered_file) unless verify?
-
-      changed?(ordered_file)
+      load_file.then(&method(:order))
+               .then(&method(:cleanup_paths))
+               .then(&method(:convert_to_yaml))
+               .then(&method(:write_file!))
+               .then(&method(:changed?))
     end
 
     def changed?(target_yaml)
@@ -66,7 +63,9 @@ module Ruboclean
     end
 
     def write_file!(target_yaml)
-      source_file_pathname.write(target_yaml)
+      target_yaml.tap do |content|
+        source_file_pathname.write(content) unless verify?
+      end
     end
 
     def source_file_pathname
