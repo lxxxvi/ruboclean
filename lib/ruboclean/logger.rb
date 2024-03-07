@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Ruboclean
+  # Logger for clean management of log levels
   class Logger
     def initialize(log_level = :verbose)
       raise ArgumentError, "Invalid log level" unless %i[verbose none].include?(log_level)
