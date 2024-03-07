@@ -17,10 +17,19 @@ module Ruboclean
                .then(&method(:cleanup_paths))
                .then(&method(:convert_to_yaml))
                .then(&method(:write_file!))
+               .then(&method(:changed?))
+    end
+
+    def changed?(target_yaml)
+      target_yaml != source_yaml
     end
 
     def verbose?
       cli_arguments.verbose?
+    end
+
+    def verify?
+      cli_arguments.verify?
     end
 
     def path
@@ -54,7 +63,9 @@ module Ruboclean
     end
 
     def write_file!(target_yaml)
-      source_file_pathname.write(target_yaml)
+      target_yaml.tap do |content|
+        source_file_pathname.write(content) unless verify?
+      end
     end
 
     def source_file_pathname

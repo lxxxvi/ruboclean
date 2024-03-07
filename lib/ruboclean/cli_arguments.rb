@@ -27,6 +27,10 @@ module Ruboclean
       @preserve_paths ||= find_argument("--preserve-paths")
     end
 
+    def verify?
+      @verify ||= find_argument("--verify")
+    end
+
     private
 
     attr_reader :command_line_arguments

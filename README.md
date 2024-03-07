@@ -84,7 +84,7 @@ gem install ruboclean
 ## Command synopsis
 
 ```shell
-ruboclean [path] [--silent] [--preserve-comments] [--preserve-paths]
+ruboclean [path] [--silent] [--preserve-comments] [--preserve-paths] [--verify]
 ```
 
 ### Parameters
@@ -95,6 +95,7 @@ ruboclean [path] [--silent] [--preserve-comments] [--preserve-paths]
 | `--silent`            | Suppress any output displayed on the screen when executing the command.                                                               |
 | `--preserve-comments` | Preserves **preceding** comments for each top-level entry in the configuration. Inline comments are **not** preserved.                |
 | `--preserve-paths`    | Skips the path cleanup that are applied against `Include:` and `Exclude:` configuration.                                              |
+| `--verify`            | Executes in dry-run mode. Exits with 1 if changes are needed, otherwise 0.                                                            |
 
 ### Examples
 

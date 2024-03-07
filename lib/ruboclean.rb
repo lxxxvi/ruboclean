@@ -2,6 +2,7 @@
 
 require "ruboclean/cli_arguments"
 require "ruboclean/orderer"
+require "ruboclean/logger"
 require "ruboclean/grouper"
 require "ruboclean/path_cleanup"
 require "ruboclean/runner"
@@ -12,8 +13,25 @@ require "ruboclean/version"
 module Ruboclean
   def self.run_from_cli!(args)
     runner = Runner.new(args)
-    print "Using path '#{runner.path}' ... " if runner.verbose?
-    runner.run!
-    puts "done." if runner.verbose?
+    logger = Ruboclean::Logger.new(runner.verbose? ? :verbose : :none)
+
+    logger.verbose "Using path '#{runner.path}' ... "
+    changed = runner.run!
+    logger.verbose post_execution_message(changed, runner.verify?)
+
+    exit !changed if runner.verify?
+    exit 0
+  end
+
+  def self.post_execution_message(changed, verify)
+    if changed
+      if verify
+        "needs clean.\n"
+      else
+        "done.\n"
+      end
+    else
+      "already clean.\n"
+    end
   end
 end

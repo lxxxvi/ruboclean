@@ -6,7 +6,7 @@ module Ruboclean
   class RunnerTest < BaseTest
     def test_run_without_arguments
       using_fixture_files("00_input.yml") do |fixture_path, directory_path|
-        Dir.chdir(directory_path) do
+        changed = Dir.chdir(directory_path) do
           Ruboclean::Runner.new.run!
         end
 
@@ -14,6 +14,7 @@ module Ruboclean
           fixture_file_path("00_expected_output.yml").read,
           Pathname.new(fixture_path).read
         )
+        assert changed
       end
     end
 
@@ -38,6 +39,20 @@ module Ruboclean
           fixture_file_path("00_expected_output.yml").read,
           Pathname.new(fixture_path).read
         )
+      end
+    end
+
+    def test_return_value_when_already_sorted
+      using_fixture_files("00_expected_output.yml") do |fixture_path, directory_path|
+        changed = Dir.chdir(directory_path) do
+          Ruboclean::Runner.new.run!
+        end
+
+        assert_equal(
+          fixture_file_path("00_expected_output.yml").read,
+          Pathname.new(fixture_path).read
+        )
+        refute changed
       end
     end
 
@@ -89,6 +104,16 @@ module Ruboclean
         Ruboclean::Runner.new(arguments).run!
 
         assert_equal fixture_file_path("00_expected_output_with_preserved_paths.yml").read,
+                     Pathname.new(fixture_path).read
+      end
+    end
+
+    def test_run_with_verify_flag
+      using_fixture_files("00_input.yml") do |fixture_path|
+        arguments = [fixture_path, "--verify"]
+        Ruboclean::Runner.new(arguments).run!
+
+        assert_equal fixture_file_path("00_input.yml").read,
                      Pathname.new(fixture_path).read
       end
     end
