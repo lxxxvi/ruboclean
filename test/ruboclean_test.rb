@@ -7,6 +7,18 @@ class RubocleanTest < BaseTest
     refute_nil ::Ruboclean::VERSION
   end
 
+  def test_run_from_cli
+    using_fixture_files("00_input.yml") do |fixture_path|
+      assert_output(/^Using path '.*' \.\.\. done.$/) do
+        exit_code = assert_raises(SystemExit) do
+          Ruboclean.run_from_cli!([fixture_path])
+        end.status
+
+        assert_equal 0, exit_code
+      end
+    end
+  end
+
   def test_run_from_cli_without_silent_option
     using_fixture_files("02_input_empty.yml") do |fixture_path|
       assert_output(/^Using path '.*' \.\.\. already clean.$/) do
