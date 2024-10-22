@@ -4,6 +4,9 @@ require:
 - rubocop-minitest
 - rubocop-rake
 
+Gemspec/AddRuntimeDependency:
+  Enabled: true
+
 Gemspec/DeprecatedAttributeAssignment:
   Enabled: true
 
@@ -77,6 +80,9 @@ Lint/DuplicateRequire:
   Enabled: true
 
 Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/DuplicateSetElement:
   Enabled: true
 
 Lint/EmptyBlock:
@@ -185,6 +191,9 @@ Lint/UnreachableLoop:
   Enabled: true
 
 Lint/UselessMethodDefinition:
+  Enabled: true
+
+Lint/UselessNumericOperation:
   Enabled: true
 
 Lint/UselessRescue:
@@ -503,6 +512,9 @@ Style/RedundantHeredocDelimiterQuotes:
 Style/RedundantInitialize:
   Enabled: true
 
+Style/RedundantInterpolationUnfreeze:
+  Enabled: true
+
 Style/RedundantLineContinuation:
   Enabled: true
 
@@ -533,6 +545,9 @@ Style/ReturnNilInPredicateMethodDefinition:
 Style/SelectByRegexp:
   Enabled: true
 
+Style/SendWithLiteralMethodName:
+  Enabled: true
+
 Style/SingleArgumentDig:
   Enabled: true
 
@@ -554,6 +569,9 @@ Style/StringConcatenation:
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: double_quotes
+
+Style/SuperArguments:
+  Enabled: true
 
 Style/SuperWithArgsParentheses:
   Enabled: true
