@@ -4,18 +4,27 @@ require "test_helper"
 
 module Ruboclean
   class ArgumentsTest < BaseTest
-    def test_path_defaults
+    def test_path_defaults # rubocop:disable Minitest/MultipleAssertions
       Ruboclean::CliArguments.new.tap do |cli_arguments|
         assert_equal Dir.pwd.to_s, cli_arguments.path
+        assert_nil cli_arguments.output_path
         assert_predicate cli_arguments, :verbose?
         refute_predicate cli_arguments, :silent?
         refute_predicate cli_arguments, :preserve_comments?
+        refute_predicate cli_arguments, :preserve_paths?
         refute_predicate cli_arguments, :verify?
       end
     end
 
     def test_path_custom
       assert_equal "foo/bar.yml", Ruboclean::CliArguments.new(["foo/bar.yml"]).path
+    end
+
+    def test_output_path_custom
+      Ruboclean::CliArguments.new(["--output=/foo/bar"]).tap do |cli_arguments|
+        assert_equal Dir.pwd.to_s, cli_arguments.path
+        assert_equal "/foo/bar", cli_arguments.output_path
+      end
     end
 
     def test_silent_custom

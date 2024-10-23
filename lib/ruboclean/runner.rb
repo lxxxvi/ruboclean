@@ -64,12 +64,16 @@ module Ruboclean
 
     def write_file!(target_yaml)
       target_yaml.tap do |content|
-        source_file_pathname.write(content) unless verify?
+        target_file_pathname.write(content) unless verify?
       end
     end
 
     def source_file_pathname
       @source_file_pathname ||= find_source_file_pathname
+    end
+
+    def target_file_pathname
+      @target_file_pathname ||= find_target_file_pathname
     end
 
     def find_source_file_pathname
@@ -80,6 +84,17 @@ module Ruboclean
       return source_path if source_path.exist?
 
       raise ArgumentError, "path does not exist: '#{source_path}'"
+    end
+
+    def find_target_file_pathname
+      return source_file_pathname if cli_arguments.output_path.nil?
+
+      target_path = Pathname.new(cli_arguments.output_path)
+      target_path = Pathname.new(Dir.pwd).join(target_path) if target_path.relative?
+
+      return target_path unless target_path.directory?
+
+      raise ArgumentError, "output path (--output=#{target_path}) cannot be a directory"
     end
   end
 end
