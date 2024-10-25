@@ -6,6 +6,7 @@ require "ruboclean/logger"
 require "ruboclean/grouper"
 require "ruboclean/path_cleanup"
 require "ruboclean/runner"
+require "ruboclean/stream_writer"
 require "ruboclean/to_yaml_converter"
 require "ruboclean/version"
 
