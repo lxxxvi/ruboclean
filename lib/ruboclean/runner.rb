@@ -16,7 +16,7 @@ module Ruboclean
       load_file.then(&method(:order))
                .then(&method(:cleanup_paths))
                .then(&method(:convert_to_yaml))
-               .then(&method(:write_file!))
+               .then(&method(:write_stream!))
                .then(&method(:changed?))
     end
 
@@ -62,12 +62,14 @@ module Ruboclean
       ToYamlConverter.new(configuration_hash, cli_arguments.preserve_comments?, source_yaml).to_yaml
     end
 
-    def write_file!(target_yaml)
+    def write_stream!(target_yaml)
       target_yaml.tap do |content|
-        target_file_pathname.write(content) unless verify?
+        StreamWriter.new(target_file_pathname, content).write! unless verify?
       end
     end
 
+    # TODO: Find a better place to compute source_file_pathname and target_file_pathname
+    #       Preferrably it should happen early in the lifecycle, as it includes (and raises) argument validations
     def source_file_pathname
       @source_file_pathname ||= find_source_file_pathname
     end

@@ -104,7 +104,7 @@ module Ruboclean
     end
 
     def test_run_with_output_argument_relative_path # rubocop:disable Metrics/MethodLength
-      # we need to read it here, because we're leaving the working directory soon
+      # we need to read it here, because we're leaving the working directory (see `Dir.chdir` below)
       expected_target_file_content = fixture_file_path("00_expected_output.yml").read
 
       using_fixture_files("00_input.yml") do |fixture_path|
@@ -120,6 +120,16 @@ module Ruboclean
             assert_equal expected_target_file_content,
                          output_pathname.read
           end
+        end
+      end
+    end
+
+    def test_run_with_output_argument_stdout
+      using_fixture_files("00_input.yml") do |fixture_path|
+        arguments = [fixture_path, "--output=STDOUT"]
+
+        assert_output(fixture_file_path("00_expected_output.yml").read) do
+          Ruboclean::Runner.new(arguments).run!
         end
       end
     end
