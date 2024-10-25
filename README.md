@@ -89,13 +89,14 @@ ruboclean [path] [--silent] [--preserve-comments] [--preserve-paths] [--verify]
 
 ### Parameters
 
-| Parameter             | Description                                                                                                                           |
-|:----------------------|:--------------------------------------------------------------------------------------------------------------------------------------|
-| `path`                | Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly. Defaults to the current working directory. |
-| `--silent`            | Suppress any output displayed on the screen when executing the command.                                                               |
-| `--preserve-comments` | Preserves **preceding** comments for each top-level entry in the configuration. Inline comments are **not** preserved.                |
-| `--preserve-paths`    | Skips the path cleanup that are applied against `Include:` and `Exclude:` configuration.                                              |
-| `--verify`            | Executes in dry-run mode. Exits with 1 if changes are needed, otherwise 0.                                                            |
+| Parameter                        | Description                                                                                                                           |
+|:---------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|
+| `path`                           | Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly. Defaults to the current working directory. |
+| `--output=[/path/to/output.yml]` | Output path, where the result is written to. Can be either absolute or relative of the current working directory                      |
+| `--silent`                       | Suppress any output displayed on the screen when executing the command.                                                               |
+| `--preserve-comments`            | Preserves **preceding** comments for each top-level entry in the configuration. Inline comments are **not** preserved.                |
+| `--preserve-paths`               | Skips the path cleanup that are applied against `Include:` and `Exclude:` configuration.                                              |
+| `--verify`                       | Executes in dry-run mode. Exits with 1 if changes are needed, otherwise 0.                                                            |
 
 ### Examples
 
