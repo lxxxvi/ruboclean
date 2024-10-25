@@ -12,7 +12,7 @@
 
 Finally it orders the configurations **alphabetically** within these groups.
 
-## Example
+## Main example
 
 ### Input `.rubocop.yml`:
 
@@ -84,27 +84,64 @@ gem install ruboclean
 ## Command synopsis
 
 ```shell
-ruboclean [path] [--silent] [--preserve-comments] [--preserve-paths] [--verify]
+ruboclean [path] \
+  [--output=/path/to/file.yml] \
+  [--silent] \
+  [--preserve-comments] \
+  [--preserve-paths] \
+  [--verify]
 ```
 
 ### Parameters
 
-| Parameter                        | Description                                                                                                                           |
-|:---------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|
-| `path`                           | Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly. Defaults to the current working directory. |
-| `--output=[/path/to/output.yml]` | Output path, where the result is written to. Can be either absolute or relative of the current working directory                      |
-| `--silent`                       | Suppress any output displayed on the screen when executing the command.                                                               |
-| `--preserve-comments`            | Preserves **preceding** comments for each top-level entry in the configuration. Inline comments are **not** preserved.                |
-| `--preserve-paths`               | Skips the path cleanup that are applied against `Include:` and `Exclude:` configuration.                                              |
-| `--verify`                       | Executes in dry-run mode. Exits with 1 if changes are needed, otherwise 0.                                                            |
+#### `path`
 
-### Examples
+Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly.
+Defaults to the current working directory.
+
+##### Examples
 
 ```shell
 ruboclean                             # uses `.rubocop.yml` of current working directory
 ruboclean /path/to/dir                # uses `.rubocop.yml` of /path/to/dir
 ruboclean /path/to/dir/.rubocop.yml
 ```
+
+#### `--output=/path/to/file.yml`
+
+Output path where the result is written to.
+Can be absolute or relative to the current working directory.
+`--output=STDOUT` prints it to STDOUT and not to a file.
+
+##### Examples
+
+```shell
+ruboclean --output=/absolute/path.yml
+ruboclean --output=relative/path.yml    # relative to current working directory
+ruboclean --output=STDOUT               # does not write anything to a file
+```
+
+#### `--silent`
+
+Suppress any log output displayed on the screen when executing the command.
+It still prints to STDOUT if used in combination with `--output=STDOUT`.
+
+#### `--preserve-comments`
+
+Preserves **preceding** comments for each top-level entry in the configuration.
+Inline comments are **not** preserved.
+
+See main example above for explanation.
+
+#### `--preserve-paths`
+
+Skips the path cleanup that are applied against `Include:` and `Exclude:` configurations.
+
+See main example above for explanation.
+
+#### `--verify`
+
+Executes in dry-run mode. Exits with `1` if changes are needed, otherwise `0`.
 
 ## Development
 
