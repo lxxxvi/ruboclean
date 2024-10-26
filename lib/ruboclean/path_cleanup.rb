@@ -8,12 +8,14 @@ module Ruboclean
   # If all entries in `Include` or `Exclude` are removed, the entire property is removed.
   # If a Cop gets entirely truncated due to removing all `Includes` and/or `Exclude`, the Cop itself will be removed.
   class PathCleanup
-    def initialize(configuration_hash, root_directory)
+    def initialize(configuration_hash, options:)
       @configuration_hash = configuration_hash
-      @root_directory = root_directory
+      @options = options
     end
 
     def cleanup
+      return configuration_hash if options.preserve_paths?
+
       configuration_hash.each_with_object({}) do |(top_level_key, top_level_value), hash|
         result = process_top_level_value(top_level_value)
 
@@ -25,7 +27,11 @@ module Ruboclean
 
     private
 
-    attr_reader :configuration_hash, :root_directory
+    attr_reader :configuration_hash, :options
+
+    def root_directory
+      options.input_path.dirname
+    end
 
     # top_level_value could be something like this:
     #

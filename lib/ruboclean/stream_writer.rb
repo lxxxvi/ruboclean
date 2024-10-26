@@ -3,25 +3,19 @@
 module Ruboclean
   # Orders the items within the groups alphabetically
   class StreamWriter
-    def initialize(target_file_pathname, content)
-      @target_file_pathname = target_file_pathname
+    def initialize(content, options:)
       @content = content
+      @options = options
     end
 
     def write!
-      if stdout?
-        puts content
-      else
-        target_file_pathname.write(content)
-      end
+      options.output_stream.write(content) unless options.verify?
+
+      content
     end
 
     private
 
-    attr_reader :target_file_pathname, :content
-
-    def stdout?
-      target_file_pathname.basename.to_s == "STDOUT"
-    end
+    attr_reader :content, :options
   end
 end

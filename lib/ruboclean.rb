@@ -6,6 +6,9 @@ require "ruboclean/logger"
 require "ruboclean/grouper"
 require "ruboclean/path_cleanup"
 require "ruboclean/runner"
+require "ruboclean/runner/options"
+require "ruboclean/runner/options/input"
+require "ruboclean/runner/options/output"
 require "ruboclean/stream_writer"
 require "ruboclean/to_yaml_converter"
 require "ruboclean/version"
@@ -16,7 +19,7 @@ module Ruboclean
     runner = Runner.new(args)
     logger = Ruboclean::Logger.new(runner.verbose? ? :verbose : :none)
 
-    logger.verbose "Using path '#{runner.path}' ... "
+    logger.verbose "Using input path '#{runner.input_path}' ... "
     changed = runner.run!
     logger.verbose post_execution_message(changed, runner.verify?)
 

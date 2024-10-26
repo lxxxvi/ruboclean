@@ -5,19 +5,24 @@ require "test_helper"
 module Ruboclean
   class StreamWriterTest < BaseTest
     def test_writes_to_path
-      Tempfile.create do |tmpfile|
-        target_file_pathname = Pathname.new(tmpfile)
-        Ruboclean::StreamWriter.new(target_file_pathname, "magnificent file output").write!
+      Tempfile.create do |tempfile|
+        pathname = Pathname.new(tempfile)
 
-        assert_equal "magnificent file output", target_file_pathname.read
+        cli_arguments = Ruboclean::CliArguments.new([pathname.to_s])
+        options = Ruboclean::Runner::Options.new(cli_arguments: cli_arguments)
+
+        Ruboclean::StreamWriter.new("magnificent file output", options: options).write!
+
+        assert_equal "magnificent file output", pathname.read
       end
     end
 
-    def test_writes_to_stdout
-      target_file_pathname = Pathname.new("STDOUT")
+    def test_writes_to_stdout_if_output_flag_is_stdout
+      cli_arguments = Ruboclean::CliArguments.new(["--output=STDOUT"])
+      options = Ruboclean::Runner::Options.new(cli_arguments: cli_arguments)
 
       assert_output("magnificent STDOUT output\n") do
-        Ruboclean::StreamWriter.new(target_file_pathname, "magnificent STDOUT output").write!
+        Ruboclean::StreamWriter.new("magnificent STDOUT output\n", options: options).write!
       end
     end
   end

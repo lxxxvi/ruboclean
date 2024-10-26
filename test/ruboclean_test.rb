@@ -9,7 +9,7 @@ class RubocleanTest < BaseTest
 
   def test_run_from_cli
     using_fixture_files("00_input.yml") do |fixture_path|
-      assert_output(/^Using path '.*' \.\.\. done.$/) do
+      assert_output(/^Using input path '.*' \.\.\. done.$/) do
         exit_code = assert_raises(SystemExit) do
           Ruboclean.run_from_cli!([fixture_path])
         end.status
@@ -21,7 +21,7 @@ class RubocleanTest < BaseTest
 
   def test_run_from_cli_without_silent_option
     using_fixture_files("02_input_empty.yml") do |fixture_path|
-      assert_output(/^Using path '.*' \.\.\. already clean.$/) do
+      assert_output(/^Using input path '.*' \.\.\. already clean.$/) do
         exit_code = assert_raises(SystemExit) do
           Ruboclean.run_from_cli!([fixture_path])
         end.status
@@ -45,7 +45,7 @@ class RubocleanTest < BaseTest
 
   def test_run_from_cli_with_verify_option_when_no_changes
     using_fixture_files("00_expected_output.yml") do |fixture_path|
-      assert_output(/^Using path '.*' \.\.\. already clean.$/) do
+      assert_output(/^Using input path '.*' \.\.\. already clean.$/) do
         exit_code = assert_raises(SystemExit) do
           Ruboclean.run_from_cli!([fixture_path, "--verify"])
         end.status
@@ -57,7 +57,7 @@ class RubocleanTest < BaseTest
 
   def test_run_from_cli_with_verify_option
     using_fixture_files("00_input.yml") do |fixture_path|
-      assert_output(/^Using path '.*' \.\.\. needs clean.$/) do
+      assert_output(/^Using input path '.*' \.\.\. needs clean.$/) do
         exit_code = assert_raises(SystemExit) do
           Ruboclean.run_from_cli!([fixture_path, "--verify"])
         end.status
