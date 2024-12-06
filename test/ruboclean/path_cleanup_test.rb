@@ -6,14 +6,13 @@ require "ruboclean/path_cleanup"
 module Ruboclean
   class PathCleanupTest < BaseTest
     def test_path_cleanup_include_and_exclude
-      assert_equal output, Ruboclean::PathCleanup.new(input, root_directory).cleanup
+      cli_arguments = Ruboclean::CliArguments.new("./test/fixtures/project_root")
+      options = Ruboclean::Runner::Options.new(cli_arguments: cli_arguments)
+
+      assert_equal output, Ruboclean::PathCleanup.new(input, options: options).cleanup
     end
 
     private
-
-    def root_directory
-      Pathname.new("test/fixtures/project_root")
-    end
 
     # rubocop:disable Metrics/MethodLength
     def input

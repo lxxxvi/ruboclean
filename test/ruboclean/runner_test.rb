@@ -18,6 +18,20 @@ module Ruboclean
       end
     end
 
+    def test_run_without_arguments_read_from_stdin
+      stdin_content = "---\n\nSomeConfig:\n  Enabled: true\n"
+
+      using_fixture_files("00_input.yml") do |_fixture_path, directory_path|
+        Dir.chdir(directory_path) do
+          assert_output(stdin_content) do
+            $stdin.stub :read, stdin_content do
+              Ruboclean::Runner.new(["--stdin"]).run!
+            end
+          end
+        end
+      end
+    end
+
     def test_run_with_explicit_file_path
       using_fixture_files("00_input.yml") do |fixture_path|
         arguments = [fixture_path]
@@ -63,7 +77,7 @@ module Ruboclean
         Ruboclean::Runner.new(arguments).run!
       end
 
-      assert_equal "path does not exist: 'does-not-exist'", error.message
+      assert_equal "input path does not exist: 'does-not-exist'", error.message
     end
 
     def test_run_with_directory_path_that_does_not_have_rubocop_yaml
@@ -73,7 +87,7 @@ module Ruboclean
         Ruboclean::Runner.new(arguments).run!
       end
 
-      assert_equal "path does not exist: '/tmp/.rubocop.yml'", error.message
+      assert_equal "input path does not exist: '/tmp/.rubocop.yml'", error.message
     end
 
     def test_run_without_require_block

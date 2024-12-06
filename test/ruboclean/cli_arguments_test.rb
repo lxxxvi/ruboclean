@@ -3,57 +3,49 @@
 require "test_helper"
 
 module Ruboclean
-  class ArgumentsTest < BaseTest
-    def test_path_defaults # rubocop:disable Minitest/MultipleAssertions
-      Ruboclean::CliArguments.new.tap do |cli_arguments|
-        assert_equal Dir.pwd.to_s, cli_arguments.path
-        assert_nil cli_arguments.output_path
-        assert_predicate cli_arguments, :verbose?
-        refute_predicate cli_arguments, :silent?
-        refute_predicate cli_arguments, :preserve_comments?
-        refute_predicate cli_arguments, :preserve_paths?
-        refute_predicate cli_arguments, :verify?
-      end
+  class CliArgumentsTest < BaseTest
+    def test_input
+      assert_nil Ruboclean::CliArguments.new.input
+      assert_equal "/some/value", Ruboclean::CliArguments.new(["/some/value"]).input
     end
 
-    def test_path_custom
-      assert_equal "foo/bar.yml", Ruboclean::CliArguments.new(["foo/bar.yml"]).path
+    def test_stdin
+      refute_predicate Ruboclean::CliArguments.new, :stdin?
+      assert_predicate Ruboclean::CliArguments.new(["--stdin"]), :stdin?
     end
 
-    def test_output_path_custom
-      Ruboclean::CliArguments.new(["--output=/foo/bar"]).tap do |cli_arguments|
-        assert_equal Dir.pwd.to_s, cli_arguments.path
-        assert_equal "/foo/bar", cli_arguments.output_path
-      end
+    def test_output
+      assert_nil Ruboclean::CliArguments.new.output
+      assert_equal "/some/value", Ruboclean::CliArguments.new(["--output=/some/value"]).output
+      assert_equal "STDOUT", Ruboclean::CliArguments.new(["--output=STDOUT"]).output
     end
 
-    def test_silent_custom
-      Ruboclean::CliArguments.new(["--silent"]).tap do |cli_arguments|
-        assert_equal Dir.pwd.to_s, cli_arguments.path
-        refute_predicate cli_arguments, :verbose?
-        assert_predicate cli_arguments, :silent?
-      end
+    def test_silent
+      refute_predicate Ruboclean::CliArguments.new, :silent?
+      assert_predicate Ruboclean::CliArguments.new(["--silent"]), :silent?
     end
 
     def test_preserve_comments
-      Ruboclean::CliArguments.new(["--preserve-comments"]).tap do |cli_arguments|
-        assert_equal Dir.pwd.to_s, cli_arguments.path
-        assert_predicate cli_arguments, :preserve_comments?
-      end
+      refute_predicate Ruboclean::CliArguments.new, :preserve_comments?
+      assert_predicate Ruboclean::CliArguments.new(["--preserve-comments"]), :preserve_comments?
     end
 
     def test_preserve_paths
-      Ruboclean::CliArguments.new(["--preserve-paths"]).tap do |cli_arguments|
-        assert_equal Dir.pwd.to_s, cli_arguments.path
-        assert_predicate cli_arguments, :preserve_paths?
-      end
+      refute_predicate Ruboclean::CliArguments.new, :preserve_paths?
+      assert_predicate Ruboclean::CliArguments.new(["--preserve-paths"]), :preserve_paths?
     end
 
     def test_verify
-      Ruboclean::CliArguments.new(["--verify"]).tap do |cli_arguments|
-        assert_equal Dir.pwd.to_s, cli_arguments.path
-        assert_predicate cli_arguments, :verify?
+      refute_predicate Ruboclean::CliArguments.new, :verify?
+      assert_predicate Ruboclean::CliArguments.new(["--verify"]), :verify?
+    end
+
+    def test_invalid_argument
+      error = assert_raises(ArgumentError) do
+        Ruboclean::CliArguments.new(["--some-flag"]).output # we need to hit any flag_arguments
       end
+
+      assert_equal "invalid argument '--some-flag'", error.message
     end
   end
 end

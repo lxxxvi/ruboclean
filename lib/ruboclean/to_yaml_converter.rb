@@ -3,27 +3,23 @@
 module Ruboclean
   # Converts the configuration hash to YAML and applies modifications on it, if requested
   class ToYamlConverter
-    def initialize(configuration_hash, preserve_comments, source_yaml)
+    def initialize(configuration_hash, source_yaml, options:)
       @configuration_hash = configuration_hash
-      @preserve_comments = preserve_comments
       @source_yaml = source_yaml
+      @options = options
     end
 
     def to_yaml
       target_yaml = sanitize_yaml(configuration_hash.transform_keys(&:to_s).to_yaml)
 
-      return target_yaml unless preserve_comments?
+      return target_yaml unless options.preserve_comments?
 
       preserve_preceding_comments(source_yaml, target_yaml)
     end
 
     private
 
-    attr_reader :configuration_hash, :preserve_comments, :source_yaml
-
-    def preserve_comments?
-      preserve_comments
-    end
+    attr_reader :configuration_hash, :source_yaml, :options
 
     def sanitize_yaml(data)
       data.gsub(/^([a-zA-Z]+)/, "\n\\1")

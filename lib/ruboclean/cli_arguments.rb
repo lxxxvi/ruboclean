@@ -4,6 +4,7 @@ module Ruboclean
   # Reads command line arguments and exposes corresponding reader methods
   class CliArguments
     FLAG_DEFAULTS = {
+      "--stdin" => false,
       "--output" => nil,
       "--silent" => false,
       "--preserve-comments" => false,
@@ -15,16 +16,16 @@ module Ruboclean
       @command_line_arguments = Array(command_line_arguments)
     end
 
-    def path
-      @path ||= find_path
+    def input
+      @input ||= find_input
     end
 
-    def output_path
+    def stdin?
+      flag_arguments.fetch("--stdin")
+    end
+
+    def output
       flag_arguments.fetch("--output")
-    end
-
-    def verbose?
-      !silent?
     end
 
     def silent?
@@ -47,12 +48,12 @@ module Ruboclean
 
     attr_reader :command_line_arguments
 
-    def find_path
-      command_line_arguments.first.then do |argument|
-        return Dir.pwd if argument.nil? || argument.start_with?("--")
+    def find_input
+      first_argument = command_line_arguments.first
 
-        argument
-      end
+      return nil if first_argument.nil? || first_argument.start_with?("--")
+
+      first_argument
     end
 
     def flag_arguments

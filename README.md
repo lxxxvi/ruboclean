@@ -84,7 +84,8 @@ gem install ruboclean
 ## Command synopsis
 
 ```shell
-ruboclean [path] \
+ruboclean [input] \
+  [--stdin] \
   [--output=/path/to/file.yml] \
   [--silent] \
   [--preserve-comments] \
@@ -94,7 +95,7 @@ ruboclean [path] \
 
 ### Parameters
 
-#### `path`
+#### `input`
 
 Can be a directory that contains a `.rubocop.yml`, or a path to a `.rubocop.yml` directly.
 Defaults to the current working directory.
@@ -107,11 +108,29 @@ ruboclean /path/to/dir                # uses `.rubocop.yml` of /path/to/dir
 ruboclean /path/to/dir/.rubocop.yml
 ```
 
+#### `--stdin`
+
+It's possible to read from `STDIN`, for example:
+
+```shell
+echo "SomeConfig: True" | ruboclean --stdin
+```
+
+Using `STDIN` will automatically set the output to `STDOUT`. You can use the `--output` flag to override this.
+
+Also, if you use `STDIN`, your current working directory should be the root directory of your project, so that the
+cleanup of unused paths/references (see `--preserve-paths`) works properly. If your current working directory
+is something else, you have to explicitly provide the project's root directory using the `input` argument.
+
+```shell
+echo "SomeConfig: True" | ruboclean /path/to/the/project/directory --stdin
+```
+
 #### `--output=/path/to/file.yml`
 
 Output path where the result is written to.
 Can be absolute or relative to the current working directory.
-`--output=STDOUT` prints it to STDOUT and not to a file.
+`--output=STDOUT` prints it to `STDOUT` and not to a file, and silences all logging (see `--silent`).
 
 ##### Examples
 
@@ -124,7 +143,7 @@ ruboclean --output=STDOUT               # does not write anything to a file
 #### `--silent`
 
 Suppress any log output displayed on the screen when executing the command.
-It still prints to STDOUT if used in combination with `--output=STDOUT`.
+Using `--output=STDOUT` also forces this.
 
 #### `--preserve-comments`
 
