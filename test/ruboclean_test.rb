@@ -7,6 +7,16 @@ class RubocleanTest < BaseTest
     refute_nil ::Ruboclean::VERSION
   end
 
+  def test_run_from_cli_prints_version
+    assert_output(/^[0-9]+\.[0-9]+\.[0-9]+$/) do
+      exit_code = assert_raises(SystemExit) do
+        Ruboclean.run_from_cli!(["--version"])
+      end.status
+
+      assert_equal 0, exit_code
+    end
+  end
+
   def test_run_from_cli
     using_fixture_files("00_input.yml") do |fixture_path|
       assert_output(/^Using input path '.*' \.\.\. done.$/) do
