@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruboclean (0.7.0)
+    ruboclean (0.7.1)
 
 GEM
   remote: https://rubygems.org/
