@@ -2,7 +2,7 @@
 
 module Ruboclean
   # Groups the rubocop configuration items into three categories:
-  #   - base: base configuration like 'require', 'inherit_from', etc
+  #   - base: base configuration like 'plugins', 'inherit_from', etc
   #   - namespaces: every item which does **not** include an "/"
   #   - cops: every item which **includes** an "/"
   class Grouper

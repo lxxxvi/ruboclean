@@ -16,7 +16,7 @@ module Ruboclean
     end
 
     def test_group_config_only_base
-      config_hash = { "require" => ["rubocop-rails"] }
+      config_hash = { "plugins" => ["rubocop-rails"] }
 
       group_config_with(config_hash).tap do |result|
         assert_equal 3, result.keys.size

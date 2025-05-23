@@ -6,7 +6,7 @@
 
 **ruboclean** puts `.rubocop.yml` into order. It groups the configuration into three groups:
 
-1. "Base"-configuration like `require`, `inherit_from`, etc.
+1. "Base"-configuration like `plugins`, `inherit_from`, etc.
 2. `Namespaces`
 3. `Namespace/Cops`
 
@@ -34,7 +34,7 @@ AllCops:
   - path_without_files/**/* # Will be removed if no files within pattern exist. Skip with --preserve-paths option.
 
 # Preceding comments will be removed unless the --preserve-comments option is used.
-require:
+plugins:
 - rubocop-rails # Inline comments will always be removed.
 ```
 
@@ -43,7 +43,7 @@ require:
 ```yml
 ---
 
-require:
+plugins:
 - rubocop-rails
 
 AllCops:

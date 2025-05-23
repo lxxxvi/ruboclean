@@ -3,7 +3,7 @@
 inherit_from:
 - shared.yml
 
-require:
+plugins:
 - rubocop-rails
 
 AllCops:
