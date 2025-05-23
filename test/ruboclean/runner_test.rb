@@ -90,13 +90,13 @@ module Ruboclean
       assert_equal "input path does not exist: '/tmp/.rubocop.yml'", error.message
     end
 
-    def test_run_without_require_block
-      using_fixture_files("01_input_without_require_block.yml") do |fixture_path|
+    def test_run_without_plugins_block
+      using_fixture_files("01_input_without_plugins_block.yml") do |fixture_path|
         arguments = [fixture_path]
         Ruboclean::Runner.new(arguments).run!
 
         assert_equal(
-          fixture_file_path("01_expected_output_without_require_block.yml").read,
+          fixture_file_path("01_expected_output_without_plugins_block.yml").read,
           Pathname.new(fixture_path).read
         )
       end

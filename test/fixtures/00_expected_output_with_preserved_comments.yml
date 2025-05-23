@@ -4,8 +4,8 @@
 inherit_from:
 - shared.yml
 
-# preceding require: comment, wrongly indented
-require:
+# preceding plugins: comment, wrongly indented
+plugins:
 - rubocop-rails
 
 # multiline
