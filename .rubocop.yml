@@ -1,6 +1,6 @@
 ---
 
-require:
+plugins:
 - rubocop-minitest
 - rubocop-rake
 
@@ -46,6 +46,9 @@ Lint/AmbiguousOperatorPrecedence:
 Lint/AmbiguousRange:
   Enabled: true
 
+Lint/ArrayLiteralInRegexp:
+  Enabled: true
+
 Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: true
 
@@ -53,6 +56,12 @@ Lint/ConstantDefinitionInBlock:
   Enabled: true
 
 Lint/ConstantOverwrittenInRescue:
+  Enabled: true
+
+Lint/ConstantReassignment:
+  Enabled: true
+
+Lint/CopDirectiveSyntax:
   Enabled: true
 
 Lint/DeprecatedConstants:
@@ -103,6 +112,9 @@ Lint/EmptyInPattern:
 Lint/FloatComparison:
   Enabled: true
 
+Lint/HashNewWithKeywordArgumentsAsDefault:
+  Enabled: true
+
 Lint/IdentityComparison:
   Enabled: true
 
@@ -136,6 +148,9 @@ Lint/NonAtomicFileOperation:
 Lint/NumberedParameterAssignment:
   Enabled: true
 
+Lint/NumericOperationWithConstantResult:
+  Enabled: true
+
 Lint/OrAssignmentToConstant:
   Enabled: true
 
@@ -151,6 +166,9 @@ Lint/RedundantDirGlobSort:
 Lint/RedundantRegexpQuantifiers:
   Enabled: true
 
+Lint/RedundantTypeConversion:
+  Enabled: true
+
 Lint/RefinementImportMethods:
   Enabled: true
 
@@ -163,7 +181,13 @@ Lint/RequireRelativeSelfPath:
 Lint/SelfAssignment:
   Enabled: true
 
+Lint/SharedMutableDefault:
+  Enabled: true
+
 Lint/StructNewOverride:
+  Enabled: true
+
+Lint/SuppressedExceptionInNumberConversion:
   Enabled: true
 
 Lint/SymbolConversion:
@@ -181,6 +205,9 @@ Lint/TrailingCommaInAttributeDeclaration:
 Lint/TripleQuotes:
   Enabled: true
 
+Lint/UnescapedBracketInRegexp:
+  Enabled: true
+
 Lint/UnexpectedBlockArity:
   Enabled: true
 
@@ -188,6 +215,12 @@ Lint/UnmodifiedReduceAccumulator:
   Enabled: true
 
 Lint/UnreachableLoop:
+  Enabled: true
+
+Lint/UselessConstantScoping:
+  Enabled: true
+
+Lint/UselessDefined:
   Enabled: true
 
 Lint/UselessMethodDefinition:
@@ -326,6 +359,9 @@ Security/IoMethods:
 Style/AccessorGrouping:
   Enabled: true
 
+Style/AmbiguousEndlessMethodDefinition:
+  Enabled: true
+
 Style/ArgumentsForwarding:
   Enabled: true
 
@@ -338,13 +374,22 @@ Style/ArrayIntersect:
 Style/BisectedAttrAccessor:
   Enabled: true
 
+Style/BitwisePredicate:
+  Enabled: true
+
 Style/CaseLikeIf:
   Enabled: true
 
 Style/CollectionCompact:
   Enabled: true
 
+Style/CombinableDefined:
+  Enabled: true
+
 Style/CombinableLoops:
+  Enabled: true
+
+Style/ComparableBetween:
   Enabled: true
 
 Style/ComparableClamp:
@@ -354,6 +399,9 @@ Style/ConcatArrayLiterals:
   Enabled: true
 
 Style/DataInheritance:
+  Enabled: true
+
+Style/DigChain:
   Enabled: true
 
 Style/DirEmpty:
@@ -386,7 +434,13 @@ Style/FetchEnvVar:
 Style/FileEmpty:
   Enabled: true
 
+Style/FileNull:
+  Enabled: true
+
 Style/FileRead:
+  Enabled: true
+
+Style/FileTouch:
   Enabled: true
 
 Style/FileWrite:
@@ -407,7 +461,13 @@ Style/HashEachMethods:
 Style/HashExcept:
   Enabled: true
 
+Style/HashFetchChain:
+  Enabled: true
+
 Style/HashLikeCase:
+  Enabled: true
+
+Style/HashSlice:
   Enabled: true
 
 Style/HashTransformKeys:
@@ -420,6 +480,15 @@ Style/IfWithBooleanLiteralBranches:
   Enabled: true
 
 Style/InPatternThen:
+  Enabled: true
+
+Style/ItAssignment:
+  Enabled: true
+
+Style/ItBlockParameter:
+  Enabled: true
+
+Style/KeywordArgumentsMerging:
   Enabled: true
 
 Style/KeywordParametersOrder:
@@ -506,6 +575,9 @@ Style/RedundantFileExtensionInRequire:
 Style/RedundantFilterChain:
   Enabled: true
 
+Style/RedundantFormat:
+  Enabled: true
+
 Style/RedundantHeredocDelimiterQuotes:
   Enabled: true
 
@@ -540,6 +612,9 @@ Style/RedundantStringEscape:
   Enabled: true
 
 Style/ReturnNilInPredicateMethodDefinition:
+  Enabled: true
+
+Style/SafeNavigationChainLength:
   Enabled: true
 
 Style/SelectByRegexp:
