@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "minitest/mock"
 
 module Ruboclean
   class RunnerTest < BaseTest # rubocop:disable Metrics/ClassLength

@@ -6,6 +6,7 @@ gemspec
 
 group :development do
   gem "minitest"
+  gem "minitest-mock"
   gem "rake"
   gem "rubocop", require: false
   gem "rubocop-minitest", require: false

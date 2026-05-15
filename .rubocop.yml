@@ -7,6 +7,9 @@ plugins:
 Gemspec/AddRuntimeDependency:
   Enabled: true
 
+Gemspec/AttributeAssignment:
+  Enabled: true
+
 Gemspec/DeprecatedAttributeAssignment:
   Enabled: true
 
@@ -17,6 +20,9 @@ Gemspec/RequireMFA:
   Enabled: true
 
 Layout/BeginEndAlignment:
+  Enabled: true
+
+Layout/EmptyLinesAfterModuleInclusion:
   Enabled: true
 
 Layout/EmptyLinesAroundAttributeAccessor:
@@ -62,6 +68,9 @@ Lint/ConstantReassignment:
   Enabled: true
 
 Lint/CopDirectiveSyntax:
+  Enabled: true
+
+Lint/DataDefineOverride:
   Enabled: true
 
 Lint/DeprecatedConstants:
@@ -217,7 +226,13 @@ Lint/UnmodifiedReduceAccumulator:
 Lint/UnreachableLoop:
   Enabled: true
 
+Lint/UnreachablePatternBranch:
+  Enabled: true
+
 Lint/UselessConstantScoping:
+  Enabled: true
+
+Lint/UselessDefaultValueArgument:
   Enabled: true
 
 Lint/UselessDefined:
@@ -227,6 +242,9 @@ Lint/UselessMethodDefinition:
   Enabled: true
 
 Lint/UselessNumericOperation:
+  Enabled: true
+
+Lint/UselessOr:
   Enabled: true
 
 Lint/UselessRescue:
@@ -350,6 +368,9 @@ Minitest/UselessAssertion:
 Naming/BlockForwarding:
   Enabled: true
 
+Naming/PredicateMethod:
+  Enabled: true
+
 Security/CompoundHash:
   Enabled: true
 
@@ -371,6 +392,9 @@ Style/ArrayCoercion:
 Style/ArrayIntersect:
   Enabled: true
 
+Style/ArrayIntersectWithSingleElement:
+  Enabled: true
+
 Style/BisectedAttrAccessor:
   Enabled: true
 
@@ -381,6 +405,9 @@ Style/CaseLikeIf:
   Enabled: true
 
 Style/CollectionCompact:
+  Enabled: true
+
+Style/CollectionQuerying:
   Enabled: true
 
 Style/CombinableDefined:
@@ -410,7 +437,13 @@ Style/DirEmpty:
 Style/DocumentDynamicEvalDefinition:
   Enabled: true
 
+Style/EmptyClassDefinition:
+  Enabled: true
+
 Style/EmptyHeredoc:
+  Enabled: true
+
+Style/EmptyStringInsideInterpolation:
   Enabled: true
 
 Style/EndlessMethod:
@@ -435,6 +468,9 @@ Style/FileEmpty:
   Enabled: true
 
 Style/FileNull:
+  Enabled: true
+
+Style/FileOpen:
   Enabled: true
 
 Style/FileRead:
@@ -503,6 +539,9 @@ Style/MapCompactWithConditionalBlock:
 Style/MapIntoArray:
   Enabled: true
 
+Style/MapJoin:
+  Enabled: true
+
 Style/MapToHash:
   Enabled: true
 
@@ -512,10 +551,16 @@ Style/MapToSet:
 Style/MinMaxComparison:
   Enabled: true
 
+Style/ModuleMemberExistenceCheck:
+  Enabled: true
+
 Style/MultilineInPatternThen:
   Enabled: true
 
 Style/NegatedIfElseCondition:
+  Enabled: true
+
+Style/NegativeArrayIndex:
   Enabled: true
 
 Style/NestedFileDirname:
@@ -533,6 +578,9 @@ Style/NumberedParametersLimit:
 Style/ObjectThen:
   Enabled: true
 
+Style/OneClassPerFile:
+  Enabled: true
+
 Style/OpenStructUse:
   Enabled: true
 
@@ -542,13 +590,25 @@ Style/OperatorMethodCall:
 Style/OptionalBooleanParameter:
   Enabled: true
 
+Style/PartitionInsteadOfDoubleSelect:
+  Enabled: true
+
+Style/PredicateWithKind:
+  Enabled: true
+
 Style/QuotedSymbols:
+  Enabled: true
+
+Style/ReduceToHash:
   Enabled: true
 
 Style/RedundantArgument:
   Enabled: true
 
 Style/RedundantArrayConstructor:
+  Enabled: true
+
+Style/RedundantArrayFlatten:
   Enabled: true
 
 Style/RedundantAssignment:
@@ -590,6 +650,9 @@ Style/RedundantInterpolationUnfreeze:
 Style/RedundantLineContinuation:
   Enabled: true
 
+Style/RedundantMinMaxBy:
+  Enabled: true
+
 Style/RedundantRegexpArgument:
   Enabled: true
 
@@ -614,7 +677,16 @@ Style/RedundantStringEscape:
 Style/ReturnNilInPredicateMethodDefinition:
   Enabled: true
 
+Style/ReverseFind:
+  Enabled: true
+
 Style/SafeNavigationChainLength:
+  Enabled: true
+
+Style/SelectByKind:
+  Enabled: true
+
+Style/SelectByRange:
   Enabled: true
 
 Style/SelectByRegexp:
@@ -654,25 +726,11 @@ Style/SuperWithArgsParentheses:
 Style/SwapValues:
   Enabled: true
 
+Style/TallyMethod:
+  Enabled: true
+
 Style/YAMLFileRead:
   Enabled: true
 
 Style/YodaExpression:
-  Enabled: true
-
-Gemspec/AttributeAssignment: # new in 1.77
-  Enabled: true
-Layout/EmptyLinesAfterModuleInclusion: # new in 1.79
-  Enabled: true
-Lint/UselessDefaultValueArgument: # new in 1.76
-  Enabled: true
-Lint/UselessOr: # new in 1.76
-  Enabled: true
-Naming/PredicateMethod: # new in 1.76
-  Enabled: true
-Style/CollectionQuerying: # new in 1.77
-  Enabled: true
-Style/EmptyStringInsideInterpolation: # new in 1.76
-  Enabled: true
-Style/RedundantArrayFlatten: # new in 1.76
   Enabled: true
