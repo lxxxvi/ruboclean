@@ -25,20 +25,6 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
-      # prepare CC test reporter
-      - name: Download CC test reporter binary
-        run: |
-          curl -L ${CC_TEST_REPORTER_BINARY_URL} > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-
       # run tests
       - name: Run tests
         run: bin/test
-
-      # report to CC
-      - run: ./cc-test-reporter after-build --exit-code 1
-        if: ${{ failure() }}
-
-      - run: ./cc-test-reporter after-build --exit-code 0
-        if: ${{ success() }}
